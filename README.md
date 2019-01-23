@@ -11,7 +11,7 @@ Sovelluksen toimintoja:
 
 Ja alustavat tietokantataulut yhteyksineen:
 
-<img src="https://github.com/ansolotli/Tutkimussovellus/blob/master/tietokantakaavio.JPG">
+<img src="https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/pics/tietokantakaavio.JPG">
 
 Mahdollisia jatkokehitysideoita:
 
@@ -22,4 +22,4 @@ Mahdollisia jatkokehitysideoita:
 
 Jolloin tietokantataulut olisivat jotakuinkin tällaiset:
 
-<img src="https://github.com/ansolotli/Tutkimussovellus/blob/master/tietokantakaavio2.JPG">
+<img src="https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/pics/tietokantakaavio2.JPG">
