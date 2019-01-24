@@ -3,12 +3,24 @@
 {% block body %}
   <table>
     <tr>
-      <th>Site</th>
+      <th>Sampling sites</th>
     </tr>
     {% for site in sites %}
     <tr>
       <td>{{ site.name }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('sites_remove', site_id=site.id) }}">
+          <input type="submit" value="Delete"/>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>
+  <br>
+  <b>Add a new sampling site</b>
+  
+  <form method="POST" action="{{ url_for('sites_create') }}">
+    <input type="text" name="name"/>
+    <input type="submit" value="Add"/>
+  </form>
 {% endblock %}

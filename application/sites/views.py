@@ -18,3 +18,13 @@ def sites_create():
     db.session().commit()
 
     return redirect(url_for("sites_index"))
+
+@app.route("/sites/remove/<site_id>", methods=["POST"])
+def sites_remove(site_id):
+
+    s = Site.query.get(site_id)
+
+    db.session().delete(s)
+    db.session().commit()
+
+    return redirect(url_for("sites_index"))
