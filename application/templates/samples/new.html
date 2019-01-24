@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('samples_create') }}">
+  <input type="text" name="name"/>
+  <input type="text" name="sampletype"/>
+  <input type="text" name="site"/>
+  <input type="submit" value="Add a new sample"/>
+</form>
+{% endblock %}

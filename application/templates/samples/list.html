@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Sample</th>
+      <th>Type</th>
+      <th>Site</th>
+    </tr>
+    {% for sample in samples %}
+    <tr>
+      <td>{{ sample.name }}</td>
+      <td>{{ sample.sampletype }}</td>
+      <td>{{ sample.site }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

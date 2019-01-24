@@ -12,4 +12,7 @@ from application import views
 from application.sites import models
 from application.sites import views
 
+from application.samples import models
+from application.samples import views
+
 db.create_all()
