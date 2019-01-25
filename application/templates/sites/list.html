@@ -13,6 +13,13 @@
           <input type="submit" value="Delete"/>
         </form>
       </td>
+      <td>
+        <form method="POST" action="{{ url_for('sites_update') }}">
+          <input type="hidden" value="{{site.name}}" name="oldname">
+          <input type="text" value="{{site.name}}" name="newname">
+          <input type="submit" value="Rename">
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>

@@ -6,11 +6,7 @@ from application.sites.models import Site
 def sites_index():
     return render_template("sites/list.html", sites = Site.query.all())
 
-@app.route("/sites/new/")
-def sites_form():
-    return render_template("sites/new.html")
-
-@app.route("/sites/", methods=["POST"])
+@app.route("/sites/add", methods=["POST"])
 def sites_create():
     s = Site(request.form.get("name"))
 
@@ -26,5 +22,17 @@ def sites_remove(site_id):
 
     db.session().delete(s)
     db.session().commit()
+
+    return redirect(url_for("sites_index"))
+
+@app.route("/sites/update", methods=["POST"])
+def sites_update():
+
+    newname = request.form.get("newname")
+    oldname = request.form.get("oldname")
+    site = Site.query.filter_by(name=oldname).first()
+    site.name = newname
+
+    db.session.commit()
 
     return redirect(url_for("sites_index"))
