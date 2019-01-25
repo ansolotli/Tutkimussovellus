@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+
+<td>{{ site.name }}</td>
+
+<td>
+  <form method="POST" action="{{ url_for('sites_rename', site_id=site.id) }}">
+    <input type="text" name="newname"/>
+    <input type="submit" value="Rename this site"/>
+  </form>
+</td>
+<td>
+  <form method="POST" action="{{ url_for('sites_remove', site_id=site.id) }}">
+    <input type="submit" value="Delete this site"/>
+  </form>
+</td>
+<br>
+<table>
+  <tr>
+    <th>Samples for this site</th>
+  </tr>
+</table>
+<br>
+<a href="{{ url_for('sites_index') }}">Return to the site list</a>
+{% endblock %}

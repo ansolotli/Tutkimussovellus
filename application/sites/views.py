@@ -6,6 +6,20 @@ from application.sites.models import Site
 def sites_index():
     return render_template("sites/list.html", sites = Site.query.all())
 
+
+@app.route("/sites/<site_id>")
+def sites_show(site_id):
+
+    s = Site.query.get(site_id)
+
+    return render_template("sites/single.html", site=s)
+
+
+@app.route("/sites/new/")
+def sites_form():
+    return render_template("sites/new.html")
+
+
 @app.route("/sites/add", methods=["POST"])
 def sites_create():
     s = Site(request.form.get("name"))
@@ -14,6 +28,7 @@ def sites_create():
     db.session().commit()
 
     return redirect(url_for("sites_index"))
+
 
 @app.route("/sites/remove/<site_id>", methods=["POST"])
 def sites_remove(site_id):
@@ -25,14 +40,14 @@ def sites_remove(site_id):
 
     return redirect(url_for("sites_index"))
 
-@app.route("/sites/update", methods=["POST"])
-def sites_update():
 
-    newname = request.form.get("newname")
-    oldname = request.form.get("oldname")
-    site = Site.query.filter_by(name=oldname).first()
-    site.name = newname
+@app.route("/sites/update/<site_id>", methods=["POST"])
+def sites_rename(site_id):
 
+    s = Site.query.get(site_id)
+    s.name = request.form.get("newname")
     db.session.commit()
 
-    return redirect(url_for("sites_index"))
+    return redirect(url_for("sites_show", site_id=site_id))
+
+    

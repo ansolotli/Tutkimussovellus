@@ -7,27 +7,13 @@
     </tr>
     {% for site in sites %}
     <tr>
-      <td>{{ site.name }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('sites_remove', site_id=site.id) }}">
-          <input type="submit" value="Delete"/>
-        </form>
-      </td>
-      <td>
-        <form method="POST" action="{{ url_for('sites_update') }}">
-          <input type="hidden" value="{{site.name}}" name="oldname">
-          <input type="text" value="{{site.name}}" name="newname">
-          <input type="submit" value="Rename">
-        </form>
-      </td>
+      <td><a href="{{ url_for('sites_show', site_id=site.id) }}">{{ site.name }}</a></td>
+      
     </tr>
     {% endfor %}
   </table>
   <br>
-  <b>Add a new sampling site</b>
-  
-  <form method="POST" action="{{ url_for('sites_create') }}">
-    <input type="text" name="name"/>
-    <input type="submit" value="Add"/>
-  </form>
+  <a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
+  <br>
+  <a href="{{ url_for('index') }}">Back to front page</a>
 {% endblock %}

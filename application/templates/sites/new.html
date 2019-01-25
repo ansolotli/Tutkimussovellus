@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<td>Name a site</td>
+<form method="POST" action="{{ url_for('sites_create') }}">
+  <input type="text" name="name"/>
+  <input type="submit" value="Add"/>
+</form>
+{% endblock %}
