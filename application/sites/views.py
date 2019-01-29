@@ -1,6 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.sites.models import Site
+from application.sites.forms import SiteForm
 
 @app.route("/sites", methods=["GET"])
 def sites_index():
@@ -17,12 +18,17 @@ def sites_show(site_id):
 
 @app.route("/sites/new/")
 def sites_form():
-    return render_template("sites/new.html")
+    return render_template("sites/new.html", form = SiteForm())
 
 
 @app.route("/sites/add", methods=["POST"])
 def sites_create():
-    s = Site(request.form.get("name"))
+    form = SiteForm(request.form)
+
+    if not form.validate():
+        return render_template("sites/new.html", form = form)
+
+    s = Site(form.name.data)
 
     db.session().add(s)
     db.session().commit()
