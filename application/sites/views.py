@@ -19,13 +19,13 @@ def sites_show(site_id):
 
 
 @app.route("/sites/new/")
-
+@login_required
 def sites_form():
     return render_template("sites/new.html", form = SiteForm())
 
 
 @app.route("/sites/add", methods=["POST"])
-
+@login_required
 def sites_create():
     form = SiteForm(request.form)
 
@@ -41,7 +41,7 @@ def sites_create():
 
 
 @app.route("/sites/remove/<site_id>", methods=["POST"])
-
+@login_required
 def sites_remove(site_id):
 
     s = Site.query.get(site_id)
@@ -53,7 +53,7 @@ def sites_remove(site_id):
 
 
 @app.route("/sites/update/<site_id>", methods=["POST"])
-
+@login_required
 def sites_rename(site_id):
 
     s = Site.query.get(site_id)
