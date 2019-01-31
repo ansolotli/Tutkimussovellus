@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.sites.models import Site
@@ -33,6 +33,7 @@ def sites_create():
         return render_template("sites/new.html", form = form)
 
     s = Site(form.name.data)
+    s.account_id = current_user.id
 
     db.session().add(s)
     db.session().commit()

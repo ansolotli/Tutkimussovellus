@@ -6,4 +6,3 @@ class SiteForm(FlaskForm):
 
     class Meta:
         csrf = False
-

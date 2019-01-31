@@ -42,4 +42,4 @@ def auth_create():
     db.session().add(u)
     db.session().commit()
 
-    return redirect(url_for("sites_index"))
+    return redirect(url_for("index"))
