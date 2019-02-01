@@ -6,3 +6,9 @@ class SiteForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class RenameSiteForm(FlaskForm):
+    name = StringField("Site name", [validators.Length(min=2)])
+
+    class Meta:
+       csrf = False 
