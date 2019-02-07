@@ -1,4 +1,5 @@
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.samples.models import Sample
@@ -9,11 +10,18 @@ from application.sites.models import Site
 def samples_index():
     return render_template("samples/list.html", samples = Sample.query.all())
 
-@app.route("/samples/new/")
+@app.route("/sites/<site_id>", methods=["GET"])
+def samples_list(site_id):
+    return render_template("sites/single.html", samples = Sample.query.filter(site_id = site_id))
+
+
+
+@app.route("/samples/new/", methods=["GET"])
 def samples_form():
-    return render_template("samples/new.html", form = SampleForm())
+    return render_template("samples/new.html", form = SampleForm(), sites = Site.query.all())
 
 @app.route("/samples/add", methods=["POST"])
+@login_required
 def samples_create():
     form = SampleForm(request.form)
 
@@ -21,11 +29,9 @@ def samples_create():
         return render_template("samples/new.html", form = form)
 
     s = Sample(form.name.data, form.sampletype.data, form.species.data, form.amount.data)
-
-    # site = db.session.query(Site).query.filter_by(name=form.name.data).first()
     
-
-    site = Site.query.filter_by(name=form.site_id.data).first()
+    siteName = request.form.get("sites")
+    site = Site.query.filter_by(name=siteName).first()
     s.site_id = site.id
 
     db.session().add(s)

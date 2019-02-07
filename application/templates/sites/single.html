@@ -2,7 +2,7 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('sites_rename', site_id=site.id) }}">
-
+  <br>
   {{site.name}}
   <table>
     <tr>
@@ -24,20 +24,25 @@
     </td>
   </tr>
 </form>
-<table>
-  <br>
-  <tr>
-    <th>Samples for this site</th>
-  </tr>
-  {% for sample in samples %}
-  <tr>
-    <td>{{ sample.name }}</td>
-  </tr>
-  {% endfor %}
-</table>
+<form method="GET" action="{{ url_for('samples_list', site_id=site_id) }}">
+  <table>
+    <br>
+    <tr>
+      <th>Samples for this site</th>
+    </tr>
+    {% for sample in samples %}
+    <tr>
+      <td>{{ sample.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</form>
 <br>
 <br>
 <a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
 <br>
+<br>
 <a href="{{ url_for('sites_index') }}">Back to site list</a>
+<br>
+<a href="{{ url_for('index') }}">Back to front page</a>
 {% endblock %}
