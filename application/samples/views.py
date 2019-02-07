@@ -1,6 +1,9 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
+
+from application import app, db
 from application.samples.models import Sample
+from application.samples.forms import SampleForm
+from application.sites.models import Site
 
 @app.route("/samples", methods=["GET"])
 def samples_index():
@@ -8,14 +11,24 @@ def samples_index():
 
 @app.route("/samples/new/")
 def samples_form():
-    return render_template("samples/new.html")
+    return render_template("samples/new.html", form = SampleForm())
 
-@app.route("/samples/", methods=["POST"])
+@app.route("/samples/add", methods=["POST"])
 def samples_create():
-    s = Sample(request.form.get("name"), request.form.get("sampletype"), 
-request.form.get("site"))
+    form = SampleForm(request.form)
+
+    if not form.validate():
+        return render_template("samples/new.html", form = form)
+
+    s = Sample(form.name.data, form.sampletype.data, form.species.data, form.amount.data)
+
+    # site = db.session.query(Site).query.filter_by(name=form.name.data).first()
+    
+
+    site = Site.query.filter_by(name=form.site_id.data).first()
+    s.site_id = site.id
 
     db.session().add(s)
     db.session().commit()
 
-    return redirect(url_for("samples_index"))
+    return redirect(url_for("sites_index"))

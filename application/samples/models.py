@@ -1,16 +1,20 @@
 from application import db
+from application.models import Base
 
-class Sample(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
+class Sample(Base):
+
+    __tablename__="sample"
 
     name = db.Column(db.String(144), nullable=False)
     sampletype = db.Column(db.String(144), nullable=False)
-    site = db.Column(db.String(144), nullable=False)
+    species = db.Column(db.String(144), nullable=False)
+    amount = db.Column(db.String(144), nullable=False)
+    
+    site_id = db.Column(db.Integer, db.ForeignKey('site.id'),
+                           nullable=False)                       
 
-    def __init__(self, name, sampletype, site):
+    def __init__(self, name, sampletype, species, amount):
         self.name = name
         self.sampletype = sampletype
-        self.site = site
+        self.species = species
+        self.amount = amount

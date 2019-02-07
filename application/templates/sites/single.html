@@ -2,8 +2,8 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('sites_rename', site_id=site.id) }}">
-  <br>
-  {{site.name}} 
+
+  {{site.name}}
   <table>
     <tr>
       <td>
@@ -29,7 +29,15 @@
   <tr>
     <th>Samples for this site</th>
   </tr>
+  {% for sample in samples %}
+  <tr>
+    <td>{{ sample.name }}</td>
+  </tr>
+  {% endfor %}
 </table>
+<br>
+<br>
+<a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
 <br>
 <a href="{{ url_for('sites_index') }}">Back to site list</a>
 {% endblock %}

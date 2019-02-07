@@ -5,13 +5,15 @@
     <tr>
       <th>Sample</th>
       <th>Type</th>
-      <th>Site</th>
+      <th>Species</th>
+      <th>Number of Specimen</th>
     </tr>
     {% for sample in samples %}
     <tr>
       <td>{{ sample.name }}</td>
       <td>{{ sample.sampletype }}</td>
-      <td>{{ sample.site }}</td>
+      <td>{{ sample.species }}</td>
+      <td>{{ sample.amount }}</td>
     </tr>
     {% endfor %}
   </table>
