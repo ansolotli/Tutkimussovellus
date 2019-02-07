@@ -1,20 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Sample</th>
-      <th>Type</th>
-      <th>Species</th>
-      <th>Number of Specimen</th>
-    </tr>
-    {% for sample in samples %}
-    <tr>
-      <td>{{ sample.name }}</td>
-      <td>{{ sample.sampletype }}</td>
-      <td>{{ sample.species }}</td>
-      <td>{{ sample.amount }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+<table>
+  <br>
+  <tr>
+    <th>Samples for this site</th>
+  </tr>
+  {% for sample in samples %}
+  <tr>
+    <td>{{ sample.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}

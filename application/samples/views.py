@@ -10,15 +10,11 @@ from application.sites.models import Site
 def samples_index():
     return render_template("samples/list.html", samples = Sample.query.all())
 
-@app.route("/sites/<site_id>", methods=["GET"])
-def samples_list(site_id):
-    return render_template("sites/single.html", samples = Sample.query.filter(site_id = site_id))
-
-
 
 @app.route("/samples/new/", methods=["GET"])
 def samples_form():
     return render_template("samples/new.html", form = SampleForm(), sites = Site.query.all())
+
 
 @app.route("/samples/add", methods=["POST"])
 @login_required

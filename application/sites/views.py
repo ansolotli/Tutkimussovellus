@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.sites.models import Site
 from application.sites.forms import SiteForm, RenameSiteForm
+from application.samples.models import Sample
 
 @app.route("/sites", methods=["GET"])
 def sites_index():
@@ -15,7 +16,8 @@ def sites_show(site_id):
 
     s = Site.query.get(site_id)
 
-    return render_template("sites/single.html", site=s, form=RenameSiteForm())
+    return render_template("sites/single.html", site=s, form=RenameSiteForm(), 
+    samples = Sample.query.filter(Sample.site_id == site_id))
 
 
 @app.route("/sites/new/")

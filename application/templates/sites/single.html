@@ -24,7 +24,6 @@
     </td>
   </tr>
 </form>
-<form method="GET" action="{{ url_for('samples_list', site_id=site_id) }}">
   <table>
     <br>
     <tr>
@@ -36,7 +35,6 @@
     </tr>
     {% endfor %}
   </table>
-</form>
 <br>
 <br>
 <a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
