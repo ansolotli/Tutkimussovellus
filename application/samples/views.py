@@ -20,7 +20,7 @@ def samples_show(sample_id):
 
     s = Sample.query.get(sample_id)
 
-    return render_template("samples/single.html", form = UpdateSampleForm, sample=s, )
+    return render_template("samples/single.html", form = UpdateSampleForm, sample=s)
 
 
 @app.route("/samples/add", methods=["POST"])
