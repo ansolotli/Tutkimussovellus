@@ -1,6 +1,7 @@
 # Tutkimussovellus
 
 [Sovellus löytyy tämän linkin takaa.](https://samplingapp.herokuapp.com/)
+Sovellukseen voi tehdä omat testitunnukset, joilla kirjautua sisään.
 
 Sovellus, johon kerätään vesistöjen tilaan liittyvät tutkimusnäytteet. Näytteitä kerätään ympäri vuoden eri paikoista. Kerätyistä näytteistä kirjataan ylös sijainti, näytteenottoaika, näytteen tyyppi (kasviplankton/eläinplankton/pohjaeläimet yms.) ja näytteestä löytyneet lajit, sekä niiden tiedot (lukumäärä, paino tms.). Samasta paikasta voidaan ottaa samalla kertaa useita näytteitä ja yhdellä näytteellä voi olla useampi ottaja. Näytteenottoon kuuluu myös ympäristömuuttujien, kuten veden lämpötilan mittauksia. Näytteen yhteyteen voi lisätä kommentin esimerkiksi sääolosuhteista tai muusta huomioitavasta.
 
