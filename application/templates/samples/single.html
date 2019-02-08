@@ -2,47 +2,47 @@
 
 {% block body %}
 
-    <table>
-        <tr>
-            <td>
-                Sample name
-            </td>
-            <td>
-                {{ sample.name }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Sample type
-            </td>
-            <td>
-                {{ sample.sampletype }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Species
-            </td>
-            <td>
-                {{ sample.species }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Number of Specimen
-            </td>
-            <td>
-                {{ sample.amount }}
-            </td>
-        </tr>
-    </table>
-
-<form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}"></form>
+<table>
     <tr>
-        <td colspan="2">
-            <input type="submit" value="Delete this sample" />
+        <td>
+            Sample name
+        </td>
+        <td>
+            {{ sample.name }}
         </td>
     </tr>
+    <tr>
+        <td>
+            Sample type
+        </td>
+        <td>
+            {{ sample.sampletype }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Species
+        </td>
+        <td>
+            {{ sample.species }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Number of Specimen
+        </td>
+        <td>
+            {{ sample.amount }}
+        </td>
+    </tr>
+</table>
+
+<form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}"></form>
+<tr>
+    <td colspan="2">
+        <input type="submit" value="Delete this sample" />
+    </td>
+</tr>
 </form>
 <br>
 <a href="{{ url_for('sites_index') }}">Back to site list</a>
