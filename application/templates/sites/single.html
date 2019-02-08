@@ -31,7 +31,7 @@
     </tr>
     {% for sample in samples %}
     <tr>
-      <td>{{ sample.name }}</td>
+      <td><a href="{{ url_for('samples_show', sample_id=sample.id) }}">{{ sample.name }}</a></td>
     </tr>
     {% endfor %}
   </table>

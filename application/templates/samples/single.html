@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ sample.name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.sampletype.label }}
+            </td>
+            <td>
+                {{ sample.sampletype }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.species.label }}
+            </td>
+            <td>
+                {{ sample.species }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.amount.label }}
+            </td>
+            <td>
+                {{ sample.amount }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Delete this sample" />
+            </td>
+        </tr>
+</form>
+<br>
+<a href="{{ url_for('sites_index') }}">Back to site list</a>
+<br>
+<a href="{{ url_for('index') }}">Back to front page</a>
+{% endblock %}

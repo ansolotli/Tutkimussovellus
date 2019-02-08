@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.samples.models import Sample
-from application.samples.forms import SampleForm
+from application.samples.forms import SampleForm, UpdateSampleForm
 from application.sites.models import Site
 
 @app.route("/samples", methods=["GET"])
@@ -14,6 +14,13 @@ def samples_index():
 @app.route("/samples/new/", methods=["GET"])
 def samples_form():
     return render_template("samples/new.html", form = SampleForm(), sites = Site.query.all())
+
+@app.route("/sites/samples/<sample_id>")
+def samples_show(sample_id):
+
+    s = Sample.query.get(sample_id)
+
+    return render_template("samples/single.html", form = UpdateSampleForm, sample=s, )
 
 
 @app.route("/samples/add", methods=["POST"])
@@ -31,6 +38,17 @@ def samples_create():
     s.site_id = site.id
 
     db.session().add(s)
+    db.session().commit()
+
+    return redirect(url_for("sites_index"))
+
+@app.route("/samples/remove/<sample_id>", methods=["POST"])
+@login_required
+def samples_remove(sample_id):
+
+    s = Sample.query.get(sample_id)
+
+    db.session().delete(s)
     db.session().commit()
 
     return redirect(url_for("sites_index"))
