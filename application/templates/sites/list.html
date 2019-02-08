@@ -1,18 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Sampling sites</th>
-    </tr>
-    {% for site in sites %}
-    <tr>
-      <td><a href="{{ url_for('sites_show', site_id=site.id) }}">{{ site.name }}</a></td>
-    </tr>
-    {% endfor %}
-  </table>
-  <br>
-  <a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
-  <br>
-  <a href="{{ url_for('index') }}">Back to front page</a>
+
+<table>
+  <tr>
+    <th>Sampling sites</th>
+  </tr>
+  {% for site in sites %}
+  <tr>
+    <td><a href="{{ url_for('sites_show', site_id=site.id) }}">{{ site.name }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br>
+<a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
+<br>
+<a href="{{ url_for('index') }}">Back to front page</a>
+
 {% endblock %}

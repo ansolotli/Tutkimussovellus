@@ -6,10 +6,11 @@ from application.sites.models import Site
 from application.sites.forms import SiteForm, RenameSiteForm
 from application.samples.models import Sample
 
+
 @app.route("/sites", methods=["GET"])
 def sites_index():
     return render_template("sites/list.html", sites = Site.query.all())
-
+    
 
 @app.route("/sites/<site_id>")
 def sites_show(site_id):

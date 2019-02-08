@@ -4,40 +4,24 @@
 
 <table>
     <tr>
-        <td>
-            Sample name
-        </td>
-        <td>
-            {{ sample.name }}
-        </td>
+        <td> Sample name </td>
+        <td> {{ sample.name }} </td>
     </tr>
     <tr>
-        <td>
-            Sample type
-        </td>
-        <td>
-            {{ sample.sampletype }}
-        </td>
+        <td> Sample type</td>
+        <td> {{ sample.sampletype }} </td>
     </tr>
     <tr>
-        <td>
-            Species
-        </td>
-        <td>
-            {{ sample.species }}
-        </td>
+        <td> Species </td>
+        <td> {{ sample.species }} </td>
     </tr>
     <tr>
-        <td>
-            Number of Specimen
-        </td>
-        <td>
-            {{ sample.amount }}
-        </td>
+        <td> Number of Specimen </td>
+        <td> {{ sample.amount }} </td>
     </tr>
 </table>
-
-<form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}"></form>
+<br>
+<form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}">
 <tr>
     <td colspan="2">
         <input type="submit" value="Delete this sample" />
@@ -48,4 +32,5 @@
 <a href="{{ url_for('sites_index') }}">Back to site list</a>
 <br>
 <a href="{{ url_for('index') }}">Back to front page</a>
+
 {% endblock %}
