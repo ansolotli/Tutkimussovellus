@@ -31,11 +31,10 @@
     </tr>
     {% for sample in samples %}
     <tr>
-      <td><a href="{{ url_for('samples_show', sample_id=sample.id) }}">{{ sample.name }}</a></td>
+      <td><a href="{{ url_for('samples_show_one_sample', sample_id=sample.id) }}">{{ sample.samplename }}</a></td>
     </tr>
     {% endfor %}
   </table>
-<br>
 <br>
 <a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
 <br>

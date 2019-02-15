@@ -18,14 +18,14 @@
     </tr>
     <tr>
       <td>
-        {{ form.name.label }}
+        {{ form.samplename.label }}
       </td>
       <td>
-        {{ form.name }}
+        {{ form.samplename }}
       </td>
       <td>
         <ul>
-          {% for error in form.name.errors %}
+          {% for error in form.samplename.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
