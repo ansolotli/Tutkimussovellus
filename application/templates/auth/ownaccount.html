@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="GET" action="{{ url_for('auth_account') }}">
+    <h5>{{ user.name }}'s research data</h5>
+    <p>There are {{ users_sites }} sampling site(s) and {{ users_samples }} sample(s).</p>
+
+    <table>
+        <tr>
+            <th>My sampling sites</th>
+        </tr>
+        {% for site in sites %}
+        <tr>
+            <td><a href="{{ url_for('sites_show_one_site', site_id=site.id) }}">{{ site.name }}</a> </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>My samples</th>
+        </tr>
+        {% for sample in samples %}
+        <tr>
+            <td><a href="{{ url_for('samples_show_one_sample', sample_id=sample.id) }}">{{ sample.samplename }}</a> </td>
+        </tr>
+        {% endfor %}
+        <tr>
+    </table>
+    <br>
+    <p><a href="{{ url_for('index') }}">Back to front page</a></p>
+</form>
+{% endblock %}

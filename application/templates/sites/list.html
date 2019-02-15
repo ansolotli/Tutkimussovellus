@@ -8,7 +8,7 @@
   </tr>
   {% for site in sites %}
   <tr>
-    <td><a href="{{ url_for('sites_show', site_id=site.id) }}">{{ site.name }}</a></td>
+    <td><a href="{{ url_for('sites_show_one_site', site_id=site.id) }}">{{ site.name }}</a></td>
   </tr>
   {% endfor %}
 </table>

@@ -15,13 +15,12 @@ def sites_index():
     
 
 @app.route("/sites/<site_id>", methods=["GET"])
-def sites_show(site_id):
+def sites_show_one_site(site_id):
 
     site = Site.query.get(site_id)
     samples = site.samples
     
     return render_template("sites/single.html", site=site, form=RenameSiteForm(), samples=samples)
-#  = sample = Sample.query.filter(Sample.site_id == site_id)
 
 
 @app.route("/sites/new/", methods=["GET"])
@@ -39,7 +38,6 @@ def sites_create():
         return render_template("sites/new.html", form = form)
 
     s = Site(form.name.data)
-    # s.account_id = current_user.id
 
     user = User.query.filter_by(username=current_user.username).first()
     user.mysites.append(s)
@@ -83,4 +81,4 @@ def sites_rename(site_id):
     
     db.session.commit()
 
-    return redirect(url_for("sites_show", site_id=site_id)) 
+    return redirect(url_for("sites_show_one_site", site_id=site_id)) 

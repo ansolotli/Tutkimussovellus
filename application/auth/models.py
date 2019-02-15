@@ -49,3 +49,16 @@ class User(Base):
     def roles(self):
         return["ADMIN"]
 
+    @staticmethod
+    def count_users_sites(userid):
+        stmt = text("SELECT COUNT(users_sites.site_id) FROM users_sites WHERE user_id = :userid").params(userid=userid)
+
+        result = db.engine.execute(stmt)
+        return result.fetchone()[0]
+
+    @staticmethod
+    def count_users_samples(userid):
+        stmt = text("SELECT COUNT(users_samples.sample_id) FROM users_samples WHERE user_id = :userid").params(userid=userid)
+
+        result = db.engine.execute(stmt)
+        return result.fetchone()[0]

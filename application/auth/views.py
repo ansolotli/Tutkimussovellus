@@ -1,7 +1,8 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
+from sqlalchemy import text
 
-from application import app, db
+from application import app, db, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, NewUserForm
 
@@ -25,9 +26,11 @@ def auth_logout():
     logout_user()
     return redirect(url_for("index"))
 
+
 @app.route("/auth/new/")
 def auth_form():
     return render_template("auth/new.html", form = NewUserForm())
+
 
 @app.route("/auth/add", methods=["POST"])
 def auth_create():
@@ -42,3 +45,30 @@ def auth_create():
     db.session().commit()
 
     return redirect(url_for("index"))
+
+
+@app.route("/auth/own", methods=["GET"])
+@login_required()
+def auth_account():
+
+    user = User.query.filter_by(username=current_user.username).first()
+    sites = user.mysites
+    samples = user.mysamples
+
+    # sites ja samples -listojen sijaan yksi lista, jossa on näytteet per site
+
+    # stmt = text(
+    #     "SELECT users_samples.sample_id, users_samples.user_id, site.name, sample.samplename "
+    #     "FROM users_samples JOIN sample ON sample.id = users_samples.sample_id, sites_samples "
+    #     "JOIN site ON site.id = sites_samples.site_id WHERE users_samples.user_id=:user_id AND "
+    #     "sites_samples.sample_id=users_samples.sample_id").params(user_id=current_user.id)
+
+    # siteslist = db.engine.execute(stmt)
+    # db.session.commit()
+
+
+    users_sites = current_user.count_users_sites(current_user.id)
+    users_samples = current_user.count_users_samples(current_user.id)
+
+    return render_template("auth/ownaccount.html", user=current_user, sites=sites, samples=samples, 
+        users_sites=users_sites, users_samples=users_samples)
