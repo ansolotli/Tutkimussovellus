@@ -11,7 +11,7 @@
 <body>
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Ani's Amazing Sampling App</a>
+    <a class="navbar-brand" href={{ url_for('index') }}>Ani's Amazing Sampling App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
       aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,6 +20,9 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('auth_account') }} ">My research</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('sites_index') }} ">All sampling sites</a>
         </li>
       </ul>
       <div class="form-inline mt-2 mt-md-0 ml-auto">

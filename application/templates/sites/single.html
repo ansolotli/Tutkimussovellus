@@ -8,7 +8,7 @@
     <tr>
       <td>
         <br>
-        {{ form.name }}
+        {{ form.name(placeholder=site.name) }}
       </td>
     </tr>
     <tr>
@@ -37,9 +37,5 @@
   </table>
 <br>
 <a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
-<br>
-<br>
-<a href="{{ url_for('sites_index') }}">Back to site list</a>
-<br>
-<a href="{{ url_for('index') }}">Back to front page</a>
+
 {% endblock %}

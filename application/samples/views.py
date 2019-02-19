@@ -1,5 +1,6 @@
 from flask import redirect, render_template, request, url_for
 from flask_login import current_user
+from sqlalchemy import text
 
 from application import app, db, login_required
 from application.samples.models import Sample
@@ -21,9 +22,16 @@ def samples_form():
 def samples_show_one_sample(sample_id):
 
     s = Sample.query.get(sample_id)
+    
+    # stmt = text(
+    #     "SELECT site.id FROM site JOIN sites_samples ON sites_samples.site_id = site.id WHERE "
+    #     "sites_samples.sample_id = :sampleid").params(sampleid = sample_id)
+    # siteid = db.engine.execute(stmt)
+    
+    # site = Site.query.filter_by(id=siteid).first()
+
 
     return render_template("samples/single.html", form = UpdateSampleForm, sample=s)
-
 
 @app.route("/samples/add", methods=["POST"])
 @login_required()
@@ -38,7 +46,7 @@ def samples_create():
     
     siteName = request.form.get("sites")
     site = Site.query.filter_by(name=siteName).first()
-    s.site_id = site.id
+    # s.site_id = site.id
 
     db.session().add(s)
     

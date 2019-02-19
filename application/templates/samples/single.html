@@ -4,6 +4,10 @@
 
 <table>
     <tr>
+        <td>Site</td>
+        <td></td>
+    </tr>
+    <tr>
         <td> Sample name </td>
         <td> {{ sample.samplename }} </td>
     </tr>
@@ -28,9 +32,4 @@
     </td>
 </tr>
 </form>
-<br>
-<a href="{{ url_for('sites_index') }}">Back to site list</a>
-<br>
-<a href="{{ url_for('index') }}">Back to front page</a>
-
 {% endblock %}
