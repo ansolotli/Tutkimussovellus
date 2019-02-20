@@ -21,13 +21,11 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    mysites = db.relationship("Site", secondary=users_sites,
-        backref=db.backref('mysites', lazy='dynamic'))
+    mysites = db.relationship("Site", cascade="all, delete-orphan", secondary=users_sites,
+        backref=db.backref('mysites', lazy='dynamic'), single_parent=True)
 
-    # sites = db.relationship("Site", backref="account", lazy=True)
-
-    mysamples = db.relationship("Sample", secondary=users_samples,
-        backref=db.backref('mysites', lazy='dynamic'))
+    mysamples = db.relationship("Sample", cascade="all, delete-orphan", secondary=users_samples,
+        backref=db.backref('mysites', lazy='dynamic'), single_parent=True)
 
     def __init__(self, name, username, password):
         self.name = name
