@@ -10,8 +10,8 @@ class Sample(Base):
     species = db.Column(db.String(144), nullable=False)
     amount = db.Column(db.String(144), nullable=False)
     
-    # site_id = db.Column(db.Integer, db.ForeignKey('site.id'),
-    #                        nullable=False)                       
+    site_id = db.Column(db.Integer, db.ForeignKey('site.id'),
+                           nullable=False)                       
 
     def __init__(self, samplename, sampletype, species, amount):
         self.samplename = samplename

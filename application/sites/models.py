@@ -3,10 +3,10 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
-sites_samples = db.Table('sites_samples', 
-    db.Column('site_id', db.Integer, db.ForeignKey('site.id')),
-    db.Column('sample_id', db.Integer, db.ForeignKey('sample.id'))
-)
+# sites_samples = db.Table('sites_samples', 
+#     db.Column('site_id', db.Integer, db.ForeignKey('site.id')),
+#     db.Column('sample_id', db.Integer, db.ForeignKey('sample.id'))
+# )
 
 class Site(Base):
 
@@ -14,11 +14,10 @@ class Site(Base):
 
     name = db.Column(db.String(144), nullable=False)
 
-    samples = db.relationship("Sample", secondary=sites_samples,
-        backref=db.backref('sites', lazy=True))
-        
-    # account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
-    #                        nullable=False)
+    # samples = db.relationship("Sample", secondary=sites_samples,
+    #     backref=db.backref('sites', lazy=True))
+    
+    samples = db.relationship("Sample", backref='site', lazy=True)
 
     def __init__(self, name):
         self.name = name
