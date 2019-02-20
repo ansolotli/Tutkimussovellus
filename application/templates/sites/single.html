@@ -8,19 +8,19 @@
     <tr>
       <td>
         <br>
-        {{ form.name(placeholder=site.name) }}
+        {{ form.name(placeholder=site.name, class="form-control") }}
       </td>
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Rename this site" />
+        <input type="submit" value="Rename this site" class="btn btn-primary"/>
       </td>
     </tr>
 </form>
 <form method="POST" action="{{ url_for('sites_remove', site_id=site.id) }}">
   <tr>
     <td colspan="2">
-      <input type="submit" value="Delete this site" />
+      <input type="submit" value="Delete this site" class="btn btn-danger" />
     </td>
   </tr>
 </form>

@@ -19,11 +19,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth_account') }} ">My research</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="{{ url_for('sites_index') }} ">All sampling sites</a>
         </li>
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth_account') }} ">My research</a>
+        </li>
+        {% endif %}
       </ul>
       <div class="form-inline mt-2 mt-md-0 ml-auto">
         <ul class="navbar-nav ml-auto">
