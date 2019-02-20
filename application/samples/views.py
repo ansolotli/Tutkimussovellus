@@ -8,6 +8,7 @@ from application.samples.forms import SampleForm, UpdateSampleForm
 from application.sites.models import Site
 from application.auth.models import User
 
+
 @app.route("/samples", methods=["GET"])
 def samples_index():
     return render_template("samples/list.html", samples = Sample.query.all())
@@ -21,17 +22,11 @@ def samples_form():
 @app.route("/sites/samples/<sample_id>")
 def samples_show_one_sample(sample_id):
 
-    s = Sample.query.get(sample_id)
-    
-    # stmt = text(
-    #     "SELECT site.id FROM site JOIN sites_samples ON sites_samples.site_id = site.id WHERE "
-    #     "sites_samples.sample_id = :sampleid").params(sampleid = sample_id)
-    # siteid = db.engine.execute(stmt)
-    
-    # site = Site.query.filter_by(id=siteid).first()
+    sample = Sample.query.get(sample_id)
+    site = Site.query.get(sample.site_id)
 
+    return render_template("samples/single.html", form = UpdateSampleForm, sample=sample, site = site)
 
-    return render_template("samples/single.html", form = UpdateSampleForm, sample=s)
 
 @app.route("/samples/add", methods=["POST"])
 @login_required()
@@ -46,16 +41,17 @@ def samples_create():
     
     siteName = request.form.get("sites")
     site = Site.query.filter_by(name=siteName).first()
-    # s.site_id = site.id
+    s.site_id = site.id
 
     db.session().add(s)
     
     # lisätään sample tietylle saitille?
-    site.samples.append(s)
+    # site.samples.append(s)
     user.mysamples.append(s)
     db.session().commit()
 
     return redirect(url_for("sites_index"))
+
 
 @app.route("/samples/remove/<sample_id>", methods=["POST"])
 @login_required()
