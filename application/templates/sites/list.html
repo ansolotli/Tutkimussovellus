@@ -1,6 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<nav aria-label="Search results page">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+      <a class="page-link" href="{{ prev_url }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=1) }}">1</a></li>
+    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=2) }}">2</a></li>
+    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=3) }}">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="{{ next_url }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <table>
   <tr>
@@ -15,5 +32,4 @@
 
 <br>
 <a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
-
 {% endblock %}
