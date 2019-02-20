@@ -52,23 +52,18 @@ def auth_create():
 def auth_account():
 
     user = User.query.filter_by(username=current_user.username).first()
-    sites = user.mysites
-    samples = user.mysamples
 
-    # sites ja samples -listojen sijaan yksi lista, jossa on näytteet per site
+    stmt = text(
+        "SELECT site.id as siteid, site.name as sitename, sample.samplename as samplename, sample.id as sampleid "
+        "FROM users_samples JOIN sample ON sample.id = users_samples.sample_id "
+        "JOIN site ON site.id = sample.site_id "
+        "WHERE users_samples.user_id = :user_id"
+        ).params(user_id=current_user.id)
 
-    # stmt = text(
-    #     "SELECT users_samples.sample_id, users_samples.user_id, site.name, sample.samplename "
-    #     "FROM users_samples JOIN sample ON sample.id = users_samples.sample_id, sites_samples "
-    #     "JOIN site ON site.id = sites_samples.site_id WHERE users_samples.user_id=:user_id AND "
-    #     "sites_samples.sample_id=users_samples.sample_id").params(user_id=current_user.id)
-
-    # siteslist = db.engine.execute(stmt)
-    # db.session.commit()
-
+    siteslist = db.engine.execute(stmt)
 
     users_sites = current_user.count_users_sites(current_user.id)
     users_samples = current_user.count_users_samples(current_user.id)
 
-    return render_template("auth/ownaccount.html", user=current_user, sites=sites, samples=samples, 
+    return render_template("auth/ownaccount.html", user=current_user, sites=siteslist, 
         users_sites=users_sites, users_samples=users_samples)
