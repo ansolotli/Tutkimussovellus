@@ -5,21 +5,32 @@
     <h5>User: {{ user.name }}</h5>
     <br>
     <p>I have added {{ users_sites }} sampling site(s) and {{ users_samples }} sample(s).</p>
-
-    <table>
-        <tr>
-            <th>My samples</th>
-        </tr>
-        {% for site in sites %}
-        <tr>
-            <td>
-                <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.sitename }}</a> - 
-                <a href="{{ url_for('samples_show_one_sample', sample_id=site.sampleid) }}">{{ site.samplename}}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
     <br>
-    Huom. Ani! Aakkosta lista paikan mukaan.
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>My samples</th>
+            </thead>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Sample</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for site in sites %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.sitename }}</a>
+                    </td>
+                    <td>
+                        <a
+                            href="{{ url_for('samples_show_one_sample', sample_id=site.sampleid) }}">{{ site.samplename}}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </form>
 {% endblock %}

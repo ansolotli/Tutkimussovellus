@@ -1,40 +1,43 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
 <form method="POST" action="{{ url_for('sites_rename', site_id=site.id) }}">
-  <br>
-  {{site.name}}
-  <table>
-    <tr>
-      <td>
-        <br>
-        {{ form.name(placeholder=site.name, class="form-control") }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Rename this site" class="btn btn-primary"/>
-      </td>
-    </tr>
+  <p>
+    {{site.name}}
+  </p>
+  <div class="form-row align-items-center">
+    <div class="col-4 mb-3">
+      {{ form.name(placeholder=site.name, class="form-control") }}
+    </div>
+    <div class="col-4 mb-3">
+      <input type="submit" value="Rename this site" class="btn btn-outline-primary" />
+    </div>
+  </div>
 </form>
+
 <form method="POST" action="{{ url_for('sites_remove', site_id=site.id) }}">
-  <tr>
-    <td colspan="2">
-      <input type="submit" value="Delete this site" class="btn btn-danger" />
-    </td>
-  </tr>
+  <div class="form-row align-items-center">
+    <div class="col-auto mb-8">
+      <input type="submit" value="Delete this site" class="btn btn-outline-danger" />
+      <small id="noteInline" class="form-text, text-muted">
+        This will also delete all the samples assigned to this sampling site!
+      </small>
+    </div>
+  </div>
 </form>
-  <table>
-    <br>
-    <tr>
-      <th>Samples for this site</th>
-    </tr>
-    {% for sample in samples %}
-    <tr>
-      <td><a href="{{ url_for('samples_show_one_sample', sample_id=sample.id) }}">{{ sample.samplename }}</a></td>
-    </tr>
-    {% endfor %}
-  </table>
+
+<table>
+  <br>
+  <tr>
+    <th>Samples for this site</th>
+  </tr>
+  {% for sample in samples %}
+  <tr>
+    <td><a href="{{ url_for('samples_show_one_sample', sample_id=sample.id) }}">{{ sample.samplename }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
 <br>
 <a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
 

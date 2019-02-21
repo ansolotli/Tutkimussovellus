@@ -2,77 +2,70 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('samples_create') }}">
-  <table>
-    <br>
-    <tr>
-      <td>
-        {{ form.site_id.label }}
-      </td>
-      <td>
-        <select name=sites method="GET" action="/">
-          {% for site in sites %}
-          <option value="{{site.name}}" SELECTED>{{site.name}}</option>"
-          {% endfor %}
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.samplename.label }}
-      </td>
-      <td>
-        {{ form.samplename }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.samplename.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.sampletype.label }}
-      </td>
-      <td>
-        {{ form.sampletype }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.sampletype.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.species.label }}
-      </td>
-      <td>
-        {{ form.species }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.species.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.amount.label }}
-      </td>
-      <td>
-        {{ form.amount }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Add a new sample" />
-      </td>
-    </tr>
+  <div class="form-group row">
+    <label for="siteName" class="col-sm-2 col-form-label">Site</label>
+    <select class="form-control col-2" name=sites method="GET" action="/">
+      {% for site in sites %}
+      <option value="{{site.name}}" SELECTED>{{site.name}}</option>"
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group row">
+    <label for="sampleName" class="col-sm-2 col-form-label">Sample name</label>
+    <div class="col-3 form-inline">
+      {{ form.samplename(class="form-control") }}
+    </div>
+    <div>
+      <ul>
+        {% for error in form.samplename.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="sampleType" class="col-sm-2 col-form-label">Sample type</label>
+    <div class="col-3 form-inline">
+      {{ form.sampletype(class="form-control") }}
+    </div>
+    <div>
+      <ul>
+        {% for error in form.sampletype.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="sampleSpecies" class="col-sm-2 col-form-label">Species</label>
+    <div class="col-3 form-inline">
+      {{ form.species(class="form-control") }}
+    </div>
+    <div>
+      <ul>
+        {% for error in form.species.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="sampleAmount" class="col-sm-2 col-form-label">Number of Specimen</label>
+    <div class="col-3 form-inline">
+      {{ form.amount(class="form-control") }}
+    </div>
+    <div>
+      <ul>
+        {% for error in form.amount.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-3">
+      <input type="submit" value="Add a new sample" class="btn btn-outline-primary" />
+    </div>
+  </div>
 </form>
 {% endblock %}

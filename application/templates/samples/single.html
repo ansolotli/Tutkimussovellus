@@ -2,34 +2,44 @@
 
 {% block body %}
 
-<table>
-    <tr>
-        <td>Site</td>
-        <td> {{site.name}} </td>
-    </tr>
-    <tr>
-        <td> Sample name </td>
-        <td> {{ sample.samplename }} </td>
-    </tr>
-    <tr>
-        <td> Sample type</td>
-        <td> {{ sample.sampletype }} </td>
-    </tr>
-    <tr>
-        <td> Species </td>
-        <td> {{ sample.species }} </td>
-    </tr>
-    <tr>
-        <td> Number of Specimen </td>
-        <td> {{ sample.amount }} </td>
-    </tr>
-</table>
-<br>
-<form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}">
-<tr>
-    <td colspan="2">
-        <input type="submit" value="Delete this sample" />
-    </td>
-</tr>
-</form>
+<div class="col-6">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Site</th>
+                <td> {{site.name}} </td>
+            </tr>
+            <tr>
+                <th>Sample name</th>
+                <td> {{ sample.samplename }} </td>
+            </tr>
+            <tr>
+                <th> Sample type</th>
+                <td> {{ sample.sampletype }} </td>
+            </tr>
+            <tr>
+                <th> Species </th>
+                <td> {{ sample.species }} </td>
+            </tr>
+            <tr>
+                <th> Number of Specimen </th>
+                <td> {{ sample.amount }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="form-row align-items-center">
+    <div class="col-auto mb-3">
+        <form method="POST" action="{{ url_for('samples_update', sample_id=sample.id) }}">
+            <input type="submit" value="Edit this sample" class="btn btn-outline-primary" />
+        </form>
+    </div>
+    <div class="col-auto mb-3">
+        <form method="POST" action="{{ url_for('samples_remove', sample_id=sample.id) }}">
+            <input type="submit" value="Delete this sample" class="btn btn-outline-danger" />
+        </form>
+    </div>
+</div>
+
 {% endblock %}
