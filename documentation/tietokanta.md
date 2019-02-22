@@ -1,4 +1,4 @@
-## Sovelluksen tietokantakaavio
+# Sovelluksen tietokanta
 
 
 ## Tietokantakaavio
