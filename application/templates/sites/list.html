@@ -3,19 +3,33 @@
 {% block body %}
 <nav aria-label="Search results page">
   <ul class="pagination pagination-sm">
+    {% if prev_url != None %}
     <li class="page-item">
       <a class="page-link" href="{{ prev_url }}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="{{ prev_url }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
     <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=1) }}">1</a></li>
-    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=2) }}">2</a></li>
-    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=3) }}">3</a></li>
+    {% if next_url != None %}
     <li class="page-item">
       <a class="page-link" href="{{ next_url }}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="{{ next_url }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% endif %}
   </ul>
 </nav>
 
@@ -31,5 +45,10 @@
 </table>
 
 <br>
-<a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
+<p>
+  <a href="{{ url_for('sites_search') }}">Search from sites</a>
+</p>
+<p>
+  <a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
+</p>
 {% endblock %}
