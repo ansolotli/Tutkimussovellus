@@ -21,7 +21,7 @@ Kyseessä on sovellus, johon kerätään vesistöjen tilaan liittyviä tutkimust
 
 - [Poks](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/tietokanta.md)
 
-### Käyttötapaukset (user stories) ja niihin liittyvät SQL-kyselyt puolestaan
+### Käyttötapaukset (user stories) ja niihin liittyvät SQL-kyselyt
 
 - [Muks?](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/userstories.md)
 
