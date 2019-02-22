@@ -1,6 +1,7 @@
 ### Asennusohje
 
 Kloonaa projektin Github-repositorio omalle koneellesi
+
 `git clone git@github.com:ansolotli/Tutkimussovellus.git`
 
 Mene projektin hakemistoon
@@ -9,7 +10,7 @@ Mene projektin hakemistoon
 
 Käynnistä virtuaaliympäristö
 
-`source venv/Scripts/activate` (Windows7)
+`source venv/Scripts/activate` (Windows7)  
 `source venv/bin/activate` (Linux)
 
 Lataa projektin riippuvuudet
@@ -18,7 +19,7 @@ Lataa projektin riippuvuudet
 
 Käynnistä ohjelma
 
-`python run.py` (Windows7)
+`python run.py` (Windows7)  
 `python3 run.py` (Linux)
 
 Vie projekti Herokuun
