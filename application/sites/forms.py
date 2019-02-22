@@ -12,3 +12,9 @@ class RenameSiteForm(FlaskForm):
 
     class Meta:
        csrf = False 
+
+class SearchSiteForm(FlaskForm):
+    name = StringField("name")
+
+    class Meta:
+        csrf = False

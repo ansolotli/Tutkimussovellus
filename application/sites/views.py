@@ -4,7 +4,7 @@ from sqlalchemy import text
 
 from application import app, db, login_manager, login_required
 from application.sites.models import Site
-from application.sites.forms import SiteForm, RenameSiteForm
+from application.sites.forms import SiteForm, RenameSiteForm, SearchSiteForm
 from application.samples.models import Sample
 from application.auth.models import User
 
@@ -12,7 +12,7 @@ from application.auth.models import User
 @app.route("/sites", methods=["GET"])
 def sites_index():
     page = request.args.get('page', 1, type=int)
-    per_page = 10
+    per_page = 5
     sites = Site.query.order_by(Site.name).paginate(page, per_page, error_out = False)
     
 # miten deaktivoida previous- ja next-linkit, jos näytettäviä kohteita on None?
@@ -26,7 +26,6 @@ def sites_index():
                           next_url=next_url, prev_url=prev_url)
 
     
-
 @app.route("/sites/<site_id>", methods=["GET"])
 def sites_show_one_site(site_id):
 
@@ -94,3 +93,35 @@ def sites_rename(site_id):
     db.session.commit()
 
     return redirect(url_for("sites_show_one_site", site_id=site_id)) 
+
+
+@app.route("/sites/search", methods=["GET"])
+def sites_search():
+    return render_template("sites/search.html", form = SearchSiteForm())
+
+
+@app.route("/sites/search/results", methods=["GET", "POST"])
+def sites_search_results():
+    form = SearchSiteForm(request.form)
+
+    if not form.validate():
+        return render_template("sites/search.html", form=form)
+
+    name = form.name.data
+
+    # stmt = text("SELECT site.id FROM site WHERE (site.name LIKE '%:name%')").params(name=name)
+    # results = db.engine.execute(stmt)
+
+    results = Site.query.filter(Site.name.like("%" + name + "%")).all()
+    
+    # page = request.args.get('page', 1, type=int)
+    # per_page = 10
+
+    # results_pages = results.paginate(page, per_page, error_out = False)
+
+    # next_url = url_for('sites_index', page=sites.next_num) \
+    #     if sites.has_next else None
+    # prev_url = url_for('sites_index', page=sites.prev_num) \
+    #     if sites.has_prev else None
+
+    return render_template("sites/list.html", sites = results)

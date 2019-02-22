@@ -24,8 +24,7 @@
                         <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.sitename }}</a>
                     </td>
                     <td>
-                        <a
-                            href="{{ url_for('samples_show_one_sample', sample_id=site.sampleid) }}">{{ site.samplename}}</a>
+                        <a href="{{ url_for('samples_show_one_sample', sample_id=site.sampleid) }}">{{ site.samplename}}</a>
                     </td>
                 </tr>
                 {% endfor %}

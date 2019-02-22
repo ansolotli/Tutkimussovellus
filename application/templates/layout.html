@@ -21,6 +21,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('sites_index') }} ">All sampling sites</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('sites_search') }}">Search from sites</a>
+        </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('auth_account') }} ">My research</a>

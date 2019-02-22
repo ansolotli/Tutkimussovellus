@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('sites_search_results') }}">
+    <div class="form-group row">
+        <label for="searchBy" class="col-auto col-form-label">Search by</label>
+        <div class="col-auto form-inline">
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="col-auto">
+            <input type="submit" value="Search" class="btn btn-outline-primary" />
+        </div>
+    </div>
+</form>
+{% endblock %}
