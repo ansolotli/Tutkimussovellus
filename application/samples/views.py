@@ -34,7 +34,7 @@ def samples_create():
     form = AddSampleForm(request.form)
 
     if not form.validate():
-        return render_template("samples/new.html", form = form)
+        return render_template("samples/new.html", form = form, sites = Site.query.all())
 
     user = User.query.filter_by(username=current_user.username).first()
     s = Sample(form.samplename.data, form.sampletype.data, form.species.data, form.amount.data)

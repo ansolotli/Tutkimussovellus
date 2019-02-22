@@ -6,7 +6,7 @@ class AddSampleForm(FlaskForm):
     samplename = StringField("Sample name", [validators.Length(min=2)])
     sampletype = StringField("Sample type", [validators.Length(min=2)])
     species = StringField("Species", [validators.Length(min=2)])
-    amount = StringField("Number of Specimen")
+    amount = StringField("Number of Specimen", [validators.Length(min=1)])
     
     class Meta:
         csrf = False
@@ -15,7 +15,7 @@ class ShowSampleForm(FlaskForm):
     samplename = StringField("Sample name", [validators.Length(min=2)])
     sampletype = StringField("Sample type", [validators.Length(min=2)])
     species = StringField("Species", [validators.Length(min=2)])
-    amount = StringField("Number of Specimen")
+    amount = StringField("Number of Specimen", [validators.Length(min=1)])
     
     class Meta:
         csrf = False
@@ -25,7 +25,7 @@ class EditSampleForm(FlaskForm):
     samplename = StringField("Sample name", [validators.Length(min=2)])
     sampletype = StringField("Sample type", [validators.Length(min=2)])
     species = StringField("Species", [validators.Length(min=2)])
-    amount = StringField("Number of Specimen")
+    amount = StringField("Number of Specimen", [validators.Length(min=1)])
     
     class Meta:
         csrf = False
