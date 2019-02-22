@@ -18,7 +18,7 @@ Sovellukseen lisättyjä tutkimuspaikkoja voi tarkastella linkkaamalla yläpalki
 
 Voit etsiä tutkimuspaikkoja paikannimillä tai nimien osilla. Paina tutkimuspaikkojen listan alapuolella olevaa linkkiä "Search from sites" tai navigoi sivulle sovelluksen yläpalkista, kirjoita avautuvaan hakukenttään haluamasi paikannimi tai sen osa, ja paina "Search"-nappulaa. 
 
-Esimerkiksi kaikki Saimaalla sijaitsevat tutkimuspaikat löytyvät haulla "Saimaa", kun taas haku "järvi" löytää esimerkiksi Inarijärven, Kemijärven ja Kilpisjärven.
+Esimerkiksi kaikki Saimaalla sijaitsevat tutkimuspaikat löytyvät haulla "Saimaa", kun taas haku "järvi" löytää esimerkiksi Inarijärven, Kemijärven ja Kilpisjärven. Olettaen tietysti, että nämä järvet ovat sovellukseen tallennettuja tutkimuspaikkoja.
 
 ### Uuden tutkimuspaikan lisääminen
 
