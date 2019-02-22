@@ -1,27 +1,26 @@
 # Tutkimussovellus
 
-[Sovellus löytyy tämän linkin takaa.](https://samplingapp.herokuapp.com/)
-Sovellukseen voi tehdä omat testitunnukset, joilla kirjautua sisään.
+Kyseessä on sovellus, johon kerätään vesistöjen tilaan liittyviä tutkimustietoja. Sovellukseen voi tallentaa tutkimuspaikkoja, sekä eri paikoista otettuja näytteitä. Kerätyistä näytteistä kirjataan ylös näytteen tyyppi (esimerkiksi kasviplankton, eläinplankton, pohjaeläimet yms.) ja näytteestä löytyneet lajit, sekä niiden lukumäärä. Samasta paikasta voidaan ottaa useita näytteitä. Sovelluksessa voi myös tarkastella omaa tutkimusdataa, sillä sovellus listaa mm. näytteet, jotka tietty käyttäjä on lisännyt sovellukseen.
 
-Sovellus, johon kerätään vesistöjen tilaan liittyvät tutkimusnäytteet. Näytteitä kerätään ympäri vuoden eri paikoista. Kerätyistä näytteistä kirjataan ylös sijainti, näytteenottoaika, näytteen tyyppi (kasviplankton/eläinplankton/pohjaeläimet yms.) ja näytteestä löytyneet lajit, sekä niiden tiedot (lukumäärä, paino tms.). Samasta paikasta voidaan ottaa samalla kertaa useita näytteitä ja yhdellä näytteellä voi olla useampi ottaja. Näytteenottoon kuuluu myös ympäristömuuttujien, kuten veden lämpötilan mittauksia. Näytteen yhteyteen voi lisätä kommentin esimerkiksi sääolosuhteista tai muusta huomioitavasta.
+[Sovellus Herokussa](https://samplingapp.herokuapp.com/)
 
+Sovellukseen voi kirjautua sisään testitunnuksilla: käyttäjänimi "testi", salasana "testi1".
+Halutessaan voi myös luoda itselleen oman käyttäjätunnuksen, jolla kirjautua sisään.
 
-Sovelluksen toimintoja:
+## Sovelluksessa tällä hetkellä olevia toimintoja
+- rekisteröityminen ja kirjautuminen
+- tutkimuspaikan lisääminen, poistaminen ja muokkaaminen
+- tutkimuspaikkojen haku paikannimien perusteella
+- tutkimusnäytteen lisääminen, poistaminen ja muokkaaminen
+- omien tutkimustietojen tarkastelu
 
-- kirjautuminen
-- tutkimuspaikan lisääminen, poistaminen ja muokkaus
-- näytteen lisääminen, poistaminen ja muokkaus
-- näytteiden haku tietokannasta erilaisilla rajauksilla
+Sovelluksen [tietokantakaavio](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/pics/tsoha_database.jpg)
 
-Alustavat tietokantataulut yhteyksineen [täällä.](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/pics/tietokantakaavio.JPG)
+[Käyttötapaukset (user stories)](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/userstories.md)
 
-Mahdollisia jatkokehitysideoita:
-
+## Mahdollisia jatkokehitysideoita ja -tarpeita
+- yksityiskohtaisempien tutkimustietojen tallentaminen
 - tutkimuspaikan historiatietojen tarkastelu
 - näytteen kommentointi
-- yhteenvetokyselyiden tekeminen esimerkiksi eri paikoista tai eri lajeista
-- mahdollisuus tulostaa tietokannan hakutuloksia .csv-tiedostoina.
-
-Jolloin tietokantataulut olisivat jotakuinkin [tällaiset.](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/pics/tietokantakaavio2.JPG)
-
-[User stories](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/userstories.md)
+- laajemmat hakutoiminnallisuudet
+- mahdollisuus tulostaa tietokannan hakutuloksia .csv-tiedostoina
