@@ -9,25 +9,19 @@ Kyseessä on sovellus, johon kerätään vesistöjen tilaan liittyviä tutkimust
 - näytteen tarkastelu, lisääminen, poistaminen ja muokkaaminen
 - omien tutkimustietojen tarkastelu
 
-### Asennusohje
+### Dokumentaatiolinkit
 
-- [Riks](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/asennusohje.md)
+- [asennusohje](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/asennusohje.md)
 
-### Käyttöohje toteutuneille toiminnallisuuksille
+- [käyttöohje toteutuneille toiminnallisuuksille](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/kayttoohje.md)
 
-- [Raks](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/kayttoohje.md)
+- [Tietokantakaavio ja CREATE TABLE -lauseet](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/tietokanta.md)
 
-### Tietokantakaavio ja CREATE TABLE -lauseet
+- [Käyttötapaukset (user stories) ja niihin liittyvät SQL-kyselyt](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/userstories.md)
 
-- [Poks](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/tietokanta.md)
+### Sovellus Herokussa
 
-### Käyttötapaukset (user stories) ja niihin liittyvät SQL-kyselyt
-
-- [Muks?](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/userstories.md)
-
-### Heroku
-
-- [Sovellus Herokussa](https://samplingapp.herokuapp.com/)
+- [Herokuun](https://samplingapp.herokuapp.com/)
 
 Sovellukseen voi kirjautua sisään testitunnuksilla: käyttäjänimi "testi", salasana "testi1".
 Halutessaan voi myös luoda itselleen oman käyttäjätunnuksen, jolla kirjautua sisään.
