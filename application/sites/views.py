@@ -107,6 +107,6 @@ def sites_search_results():
 
     name = form.name.data
 
-    results = Site.query.filter(Site.name.ilike("%" + name + "%")).all()
+    results = Site.query.filter(Site.name.ilike("%" + name + "%")).order_by(Site.name).all()
 
     return render_template("sites/search.html", sites = results, form = form)

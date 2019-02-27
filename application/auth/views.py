@@ -57,7 +57,8 @@ def auth_account():
         "SELECT site.id as siteid, site.name as sitename, sample.samplename as samplename, sample.id as sampleid "
         "FROM users_samples JOIN sample ON sample.id = users_samples.sample_id "
         "JOIN site ON site.id = sample.site_id "
-        "WHERE users_samples.user_id = :user_id"
+        "WHERE users_samples.user_id = :user_id "
+        "ORDER BY site.name"
         ).params(user_id=current_user.id)
 
     siteslist = db.engine.execute(stmt)
