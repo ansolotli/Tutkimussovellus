@@ -4,13 +4,13 @@
 <form method="POST" action="{{ url_for('samples_create') }}">
   <div class="form-group row">
     <label for="siteName" class="col-sm-2 col-form-label">Site</label>
-    <div class="col-4">
-      {{ form.site_id }}
+    <div class="col-3">
+      {{ form.site_id(class="form-control") }}
     </div>
   </div>
   <div class="form-group row">
     <label for="sampleName" class="col-sm-2 col-form-label">Sample name</label>
-    <div class="col-3 form-inline">
+    <div class="col-3">
       {{ form.samplename(class="form-control") }}
     </div>
     <div>
@@ -23,7 +23,7 @@
   </div>
   <div class="form-group row">
     <label for="sampleType" class="col-sm-2 col-form-label">Sample type</label>
-    <div class="col-3 form-inline">
+    <div class="col-3">
       {{ form.sampletype(class="form-control") }}
     </div>
     <div>
@@ -36,7 +36,7 @@
   </div>
   <div class="form-group row">
     <label for="sampleSpecies" class="col-sm-2 col-form-label">Species</label>
-    <div class="col-3 form-inline">
+    <div class="col-3">
       {{ form.species(class="form-control") }}
     </div>
     <div>
@@ -49,7 +49,7 @@
   </div>
   <div class="form-group row">
     <label for="sampleAmount" class="col-sm-2 col-form-label">Number of Specimen</label>
-    <div class="col-3 form-inline">
+    <div class="col-3">
       {{ form.amount(class="form-control") }}
     </div>
     <div>

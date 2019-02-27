@@ -37,16 +37,19 @@ def samples_show_one_sample(sample_id):
 @app.route("/samples/add", methods=["POST"])
 @login_required()
 def samples_create():
+
     form = AddSampleForm(request.form)
 
-    if not form.validate():
-        return render_template("samples/new.html", form = form, sites = Site.query.order_by(Site.name).all())
+    # if not form.validate():
+    #     form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
+    #     form.site_id.data=site_id
+    #     return render_template("samples/new.html", form = form)
 
     user = User.query.filter_by(username=current_user.username).first()
     s = Sample(form.samplename.data, form.sampletype.data, form.species.data, form.amount.data)
     
-    siteName = request.form.get("sites")
-    site = Site.query.filter_by(name=siteName).first()
+    siteid = form.site_id.data
+    site = Site.query.get(siteid)
     s.site_id = site.id
 
     db.session().add(s)
@@ -85,15 +88,18 @@ def samples_update(sample_id):
 @app.route("/samples/save/<sample_id>", methods=["GET", "POST"])
 @login_required()
 def samples_save(sample_id):
+
     form = EditSampleForm(request.form)
 
     s = Sample.query.filter_by(id=sample_id).first()
+    
+    # if not form.validate():
+        # form = EditSampleForm(obj=s)
+        # form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
+        # return render_template("samples/edit.html", sample=s, form=form)
 
-    if not form.validate():
-        return render_template("samples/edit.html", sample=s, form=form, sites = Site.query.order_by(Site.name).all())
-
-    siteName = request.form.get("sites")
-    site = Site.query.filter_by(name=siteName).first()
+    siteid = form.site_id.data
+    site = Site.query.get(siteid)
     s.site_id = site.id
 
     s.samplename = form.samplename.data
