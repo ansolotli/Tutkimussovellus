@@ -16,7 +16,7 @@ def samples_index():
 
 @app.route("/samples/new/", methods=["GET"])
 def samples_form():
-    return render_template("samples/new.html", form = AddSampleForm(), sites = Site.query.all())
+    return render_template("samples/new.html", form = AddSampleForm(), sites = Site.query.order_by(Site.name).all())
 
 
 @app.route("/sites/samples/<sample_id>")
@@ -34,7 +34,7 @@ def samples_create():
     form = AddSampleForm(request.form)
 
     if not form.validate():
-        return render_template("samples/new.html", form = form, sites = Site.query.all())
+        return render_template("samples/new.html", form = form, sites = Site.query.order_by(Site.name).all())
 
     user = User.query.filter_by(username=current_user.username).first()
     s = Sample(form.samplename.data, form.sampletype.data, form.species.data, form.amount.data)
@@ -47,7 +47,7 @@ def samples_create():
     user.mysamples.append(s)
     db.session().commit()
 
-    return redirect(url_for("sites_index"))
+    return redirect(url_for("samples_show_one_sample", sample_id = s.id))
 
 
 @app.route("/samples/remove/<sample_id>", methods=["POST"])
@@ -68,7 +68,7 @@ def samples_update(sample_id):
 
     sample = Sample.query.get(sample_id)
 
-    return render_template("samples/edit.html", sample = sample, form=EditSampleForm(), sites = Site.query.all())
+    return render_template("samples/edit.html", sample = sample, form=EditSampleForm(), sites = Site.query.order_by(Site.name).all())
 
 
 @app.route("/samples/save/<sample_id>", methods=["GET", "POST"])
@@ -79,7 +79,7 @@ def samples_save(sample_id):
     s = Sample.query.filter_by(id=sample_id).first()
 
     if not form.validate():
-        return render_template("samples/show_one_sample.html", sample_id=sample_id, form = form)
+        return render_template("samples/edit.html", sample=s, form=form, sites = Site.query.order_by(Site.name).all())
 
     # jos näitä ei muuteta niin pidä vanhat!!
 
