@@ -1,6 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<table>
+  <tr>
+    <th>Sampling sites</th>
+  </tr>
+  {% for site in sites %}
+  <tr>
+    <td><a href="{{ url_for('sites_show_one_site', site_id=site.id) }}">{{ site.name }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+
 <nav aria-label="Search results page">
   <ul class="pagination pagination-sm">
     {% if prev_url != None %}
@@ -16,7 +29,7 @@
       </a>
     </li>
     {% endif %}
-    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=1) }}">1</a></li>
+    <li class="page-item"><a class="page-link" href="{{ url_for('sites_index', page=page) }}"> {{ page }}</a></li>
     {% if next_url != None %}
     <li class="page-item">
       <a class="page-link" href="{{ next_url }}" aria-label="Next">
@@ -33,21 +46,6 @@
   </ul>
 </nav>
 
-<table>
-  <tr>
-    <th>Sampling sites</th>
-  </tr>
-  {% for site in sites %}
-  <tr>
-    <td><a href="{{ url_for('sites_show_one_site', site_id=site.id) }}">{{ site.name }}</a></td>
-  </tr>
-  {% endfor %}
-</table>
-
-<br>
-<p>
-  <a href="{{ url_for('sites_search') }}">Search from sites</a>
-</p>
 <p>
   <a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
 </p>

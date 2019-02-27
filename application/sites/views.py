@@ -14,8 +14,6 @@ def sites_index():
     page = request.args.get('page', 1, type=int)
     per_page = 5
     sites = Site.query.order_by(Site.name).paginate(page, per_page, error_out = False)
-    
-# miten deaktivoida previous- ja next-linkit, jos näytettäviä kohteita on None?
 
     next_url = url_for('sites_index', page=sites.next_num) \
         if sites.has_next else None
@@ -23,7 +21,7 @@ def sites_index():
         if sites.has_prev else None
 
     return render_template("sites/list.html", sites = sites.items,
-                          next_url=next_url, prev_url=prev_url)
+                          next_url=next_url, prev_url=prev_url, page = page)
 
     
 @app.route("/sites/<site_id>", methods=["GET"])
@@ -109,19 +107,6 @@ def sites_search_results():
 
     name = form.name.data
 
-    # stmt = text("SELECT site.id FROM site WHERE (site.name LIKE '%:name%')").params(name=name)
-    # results = db.engine.execute(stmt)
+    results = Site.query.filter(Site.name.ilike("%" + name + "%")).all()
 
-    results = Site.query.filter(Site.name.like("%" + name + "%")).all()
-    
-    # page = request.args.get('page', 1, type=int)
-    # per_page = 10
-
-    # results_pages = results.paginate(page, per_page, error_out = False)
-
-    # next_url = url_for('sites_index', page=sites.next_num) \
-    #     if sites.has_next else None
-    # prev_url = url_for('sites_index', page=sites.prev_num) \
-    #     if sites.has_prev else None
-
-    return render_template("sites/list.html", sites = results)
+    return render_template("sites/search.html", sites = results, form = form)
