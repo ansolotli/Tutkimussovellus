@@ -1,37 +1,63 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('samples_save', sample_id=sample.id) }}">
+<form method="POST" action="{{ url_for('samples_save', sample_id=sample.id)}}">
     <div class="form-group row">
         <label for="siteName" class="col-sm-3 col-form-label">Site</label>
-        <select class="form-control col-4" name=sites method="GET" action="/">
-            {% for site in sites %}
-            <option value="{{site.name}}" SELECTED>{{site.name}}</option>"
-            {% endfor %}
-        </select>
+        <div class="col-4">
+            {{ form.site_id }}
+        </div>
     </div>
     <div class="form-group row">
         <label for="sampleName" class="col-sm-3 col-form-label">Sample name</label>
         <div class="col-4">
-            {{ form.samplename(placeholder=sample.samplename, class="form-control") }}
+            {{ form.samplename(value=sample.samplename, class="form-control") }}
+        </div>
+        <div>
+            <ul>
+                {% for error in form.samplename.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="form-group row">
         <label for="sampleType" class="col-sm-3 col-form-label">Sample type</label>
         <div class="col-4">
-            {{ form.sampletype(placeholder=sample.sampletype, class="form-control") }}
+            {{ form.sampletype(value=sample.sampletype, class="form-control") }}
+        </div>
+        <div>
+            <ul>
+                {% for error in form.sampletype.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="form-group row">
         <label for="sampleSpecies" class="col-sm-3 col-form-label">Species</label>
         <div class="col-4">
-            {{ form.species(placeholder=sample.species, class="form-control") }}
+            {{ form.species(value=sample.species, class="form-control") }}
+        </div>
+        <div>
+            <ul>
+                {% for error in form.species.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="form-group row">
         <label for="sampleAmount" class="col-sm-3 col-form-label">Number of Specimen</label>
         <div class="col-4">
-            {{ form.amount(placeholder=sample.amount, class="form-control") }}
+            {{ form.amount(value=sample.amount, class="form-control") }}
+        </div>
+        <div>
+            <ul>
+                {% for error in form.amount.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="form-group row">

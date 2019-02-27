@@ -4,11 +4,9 @@
 <form method="POST" action="{{ url_for('samples_create') }}">
   <div class="form-group row">
     <label for="siteName" class="col-sm-2 col-form-label">Site</label>
-    <select class="form-control col-2" name=sites method="GET" action="/">
-      {% for site in sites %}
-      <option value="{{site.name}}" SELECTED>{{site.name}}</option>"
-      {% endfor %}
-    </select>
+    <div class="col-4">
+      {{ form.site_id }}
+    </div>
   </div>
   <div class="form-group row">
     <label for="sampleName" class="col-sm-2 col-form-label">Sample name</label>

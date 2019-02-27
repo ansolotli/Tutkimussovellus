@@ -14,9 +14,15 @@ def samples_index():
     return render_template("samples/list.html", samples = Sample.query.all())
 
 
-@app.route("/samples/new/", methods=["GET"])
-def samples_form():
-    return render_template("samples/new.html", form = AddSampleForm(), sites = Site.query.order_by(Site.name).all())
+@app.route("/samples/new/<site_id>", methods=["GET"])
+def samples_form(site_id):
+
+    form = AddSampleForm()
+
+    form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
+    form.site_id.data=site_id
+    
+    return render_template("samples/new.html", form = form)
 
 
 @app.route("/sites/samples/<sample_id>")
@@ -68,7 +74,12 @@ def samples_update(sample_id):
 
     sample = Sample.query.get(sample_id)
 
-    return render_template("samples/edit.html", sample = sample, form=EditSampleForm(), sites = Site.query.order_by(Site.name).all())
+
+    form = EditSampleForm(obj=sample)
+    form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
+
+
+    return render_template("samples/edit.html", sample = sample, form=form)
 
 
 @app.route("/samples/save/<sample_id>", methods=["GET", "POST"])
@@ -80,8 +91,6 @@ def samples_save(sample_id):
 
     if not form.validate():
         return render_template("samples/edit.html", sample=s, form=form, sites = Site.query.order_by(Site.name).all())
-
-    # jos näitä ei muuteta niin pidä vanhat!!
 
     siteName = request.form.get("sites")
     site = Site.query.filter_by(name=siteName).first()

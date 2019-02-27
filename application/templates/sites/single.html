@@ -8,7 +8,7 @@
   </p>
   <div class="form-row align-items-center">
     <div class="col-4 mb-3">
-      {{ form.name(placeholder=site.name, class="form-control") }}
+      {{ form.name(value=site.name, class="form-control") }}
     </div>
     <div class="col-4 mb-3">
       <input type="submit" value="Rename this site" class="btn btn-outline-primary" />
@@ -39,6 +39,6 @@
   {% endfor %}
 </table>
 <br>
-<a href="{{ url_for('samples_form') }}">Add a new sample to this site</a>
+<a href="{{ url_for('samples_form', site_id=site.id) }}">Add a new sample to this site</a>
 
 {% endblock %}
