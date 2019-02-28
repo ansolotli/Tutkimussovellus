@@ -1,6 +1,6 @@
 ### User stories
 
-Kirjautumattomana käyttäjänä haluan | SQL-lause toteutetuille toiminnallisuuksille
+Kirjautumattomana käyttäjänä haluan | SQL-lause toteutetulle toiminnallisuudelle
 --- | ---
 luoda uuden käyttäjätunnuksen | INSERT INTO account (date_created, date_modified, name, username, password) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?)
 kirjautua sisään | SELECT account.id AS account_id, account.date_created AS account_date_created, account.date_modified AS account_date_modified, account.name AS account_name, account.username AS account_username, account.password AS account_password FROM account WHERE account.username = ? AND account.password = ?
@@ -12,7 +12,7 @@ hakea sovelluksesta tutkimuspaikkoja paikannimen perusteella | SELECT site.id AS
 - hakea sovelluksesta näytteitä näytteenottoajankohdan perusteella
 - hakea sovelluksesta näytteitä siinä esiintyvän lajin perusteella
 
-Kirjautuneena käyttäjänä haluan | SQL-lause toteutetuille toiminnallisuuksille
+Kirjautuneena käyttäjänä haluan | SQL-lause toteutetulle toiminnallisuudelle
 --- | ---
 lisätä sovellukseen uuden tutkimuspaikan |  INSERT INTO site (date_created, date_modified, name) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)
 muokata olemassaolevia tutkimuspaikkoja | UPDATE site SET date_modified=CURRENT_TIMESTAMP, name=? WHERE site.id = ?
@@ -23,3 +23,8 @@ poistaa näytteitä | DELETE FROM sample WHERE sample.id = ?
 nähdä, montako tutkimuspaikkaa olen lisännyt sovellukseen | SELECT COUNT(users_sites.site_id) FROM users_sites WHERE user_id = ?
 nähdä, montako näytettä olen lisännyt sovellukseen | SELECT COUNT(users_samples.sample_id) FROM users_samples WHERE user_id = ?
 tarkastella näytteitä, jotka olen itse tallentanut sovellukseen | SELECT site.id as siteid, site.name as sitename, sample.samplename as samplename, sample.id as sampleid FROM users_samples JOIN sample ON sample.id = users_samples.sample_id JOIN site ON site.id = sample.site_id WHERE users_samples.user_id = ?
+nähdä, montako näytettä kullakin tutkimuspaikalla on |  SELECT site.name AS name, COUNT(sample.id) AS count FROM sample LEFT JOIN site ON site.id = sample.site_id GROUP BY name
+nähdä, montako näytettä kutakin näytetyyppiä on | SELECT sample.sampletype AS type, COUNT(sample.id) AS count FROM sample GROUP BY type
+nähdä, montako näytettä kutakin näytetyyppiä kullakin tutkimuspaikalla on | SELECT site.name AS name, sample.sampletype AS type, COUNT(sample.id) AS count FROM sample LEFT JOIN site ON site.id = sample.site_id GROUP BY name, type
+nähdä, monessako näytteessä kukin laji esiintyy | SELECT sample.species AS species, COUNT(sample.id) AS count FROM sample GROUP BY species
+nähdä, monessako näytteessä kukin laji esiintyy kullakin tutkimuspaikalla | SELECT site.name AS name, sample.species AS species, COUNT(sample.id) AS count FROM sample LEFT JOIN site ON site.id = sample.site_id GROUP BY name, species
