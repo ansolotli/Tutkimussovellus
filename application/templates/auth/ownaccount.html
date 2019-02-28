@@ -6,22 +6,44 @@
     <br>
     <p>I have added {{ users_sites }} sampling site(s) and {{ users_samples }} sample(s).</p>
     <br>
-    <div class="col-6">
+    <div class="col-5">
+        <table class="table">
+            <thead>
+                <th>My sites</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-5">
+        <table>
+            <tbody>
+                {% for site in list_users_sites %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.name }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <div class="col-5">
         <table class="table">
             <thead>
                 <th>My samples</th>
             </thead>
-            <thead>
-                <tr>
-                    <th>Site</th>
-                    <th>Sample</th>
-                </tr>
-            </thead>
+        </table>
+    </div>
+
+    <div class="col-5">
+        <table class="table">
             <tbody>
                 {% for site in sites %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.sitename }}</a>
+                        <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.sitename }}</a> 
                     </td>
                     <td>
                         <a href="{{ url_for('samples_show_one_sample', sample_id=site.sampleid) }}">{{ site.samplename}}</a>
@@ -31,5 +53,6 @@
             </tbody>
         </table>
     </div>
+    <br>
 </form>
 {% endblock %}

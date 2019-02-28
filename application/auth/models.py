@@ -60,3 +60,16 @@ class User(Base):
 
         result = db.engine.execute(stmt)
         return result.fetchone()[0]
+    
+    @staticmethod
+    def list_users_sites(userid):
+        stmt = text("SELECT site.name AS name FROM site LEFT JOIN users_sites ON site.id = users_sites.site_id "
+                    "WHERE users_sites.user_id = :userid").params(userid=userid)
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[0]})
+        
+        return response

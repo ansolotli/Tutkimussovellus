@@ -66,5 +66,7 @@ def auth_account():
     users_sites = current_user.count_users_sites(current_user.id)
     users_samples = current_user.count_users_samples(current_user.id)
 
+    list_users_sites = current_user.list_users_sites(current_user.id)
+
     return render_template("auth/ownaccount.html", user=current_user, sites=siteslist, 
-        users_sites=users_sites, users_samples=users_samples)
+        users_sites=users_sites, users_samples=users_samples, list_users_sites = list_users_sites)
