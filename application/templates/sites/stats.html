@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="GET" action="{{ url_for('see_statistics') }}">
+
+    <div class="col-6 text-center">
+        <table class="table">
+            <thead>
+                <th>How many samples are there on each site?</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>Site</th>
+                <th>Samples</th>
+            </thead>
+            <tbody>
+                {% for samp in samples_per_site %}
+                <tr>
+                    <td>
+                        {{ samp.name }}
+                    </td>
+                    <td>
+                        {{ samp.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="col-6 text-center">
+        <table class="table">
+            <thead>
+                <th>How many samples of each sample type are there?</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>Type</th>
+                <th>Samples</th>
+            </thead>
+            <tbody>
+                {% for stype in group_by_type %}
+                <tr>
+                    <td>
+                        {{ stype.type }}
+                    </td>
+                    <td>
+                        {{ stype.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="col-6 text-center">
+        <table class="table">
+            <thead>
+                <th>How many samples of each type are there on each site?</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>Site</th>
+                <th>Type</th>
+                <th>Samples</th>
+            </thead>
+            <tbody>
+                {% for samp in samples_per_site_and_type %}
+                <tr>
+                    <td>
+                        {{ samp.name }}
+                    </td>
+                    <td>
+                        {{ samp.type }}
+                    </td>
+                    <td>
+                        {{ samp.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="col-6 text-center">
+        <table class="table">
+            <thead>
+                <th>In how many samples each species appears?</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>Species</th>
+                <th>Samples</th>
+            </thead>
+            <tbody>
+                {% for spec in group_by_species %}
+                <tr>
+                    <td>
+                        {{ spec.species }}
+                    </td>
+                    <td>
+                        {{ spec.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="col-6 text-center">
+        <table class="table">
+            <thead>
+                <th>How many samples are there of each species on each site?</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>Site</th>
+                <th>Species</th>
+                <th>Samples</th>
+            </thead>
+            <tbody>
+                {% for spec in group_by_species_and_site %}
+                <tr>
+                    <td>
+                        {{ spec.name }}
+                    </td>
+                    <td>
+                        {{ spec.species }}
+                    </td>
+                    <td>
+                        {{ spec.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</form>
+{% endblock %}

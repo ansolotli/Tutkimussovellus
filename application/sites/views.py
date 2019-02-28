@@ -110,3 +110,17 @@ def sites_search_results():
     results = Site.query.filter(Site.name.ilike("%" + name + "%")).order_by(Site.name).all()
 
     return render_template("sites/search.html", sites = results, form = form)
+
+
+@app.route("/sites/statistics", methods=["GET"])
+def see_statistics():
+
+    samples_per_site_and_type = Site.samples_per_site_and_type()
+    samples_per_site = Site.samples_per_site()
+    group_by_species_and_site = Site.group_by_species_and_site()
+
+    group_by_species = Sample.group_by_species()
+    group_by_type = Sample.group_by_type()
+
+    return render_template("sites/stats.html", samples_per_site_and_type = samples_per_site_and_type, samples_per_site = samples_per_site,
+    group_by_species = group_by_species, group_by_species_and_site = group_by_species_and_site, group_by_type = group_by_type)
