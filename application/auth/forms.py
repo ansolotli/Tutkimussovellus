@@ -11,7 +11,9 @@ class LoginForm(FlaskForm):
 class NewUserForm(FlaskForm):
     name = StringField("Name", [validators.Length(min=2, max=20)])
     username = StringField("Username", [validators.Length(min=2, max=20)])
-    password = PasswordField("Password", [validators.Length(min=2, max=30)])
-
+    password = PasswordField("Password", [validators.Length(min=2, max=30), 
+        validators.EqualTo("confirm", message="Passwords must match")])
+    confirm  = PasswordField("Repeat Password")
+    
     class Meta:
         csrf = False
