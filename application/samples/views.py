@@ -20,7 +20,7 @@ def samples_form(site_id):
     form = AddSampleForm()
 
     form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
-    form.site_id.data=site_id
+    form.site_id.data=int(site_id)
     
     return render_template("samples/new.html", form = form)
 
@@ -39,11 +39,12 @@ def samples_show_one_sample(sample_id):
 def samples_create():
 
     form = AddSampleForm(request.form)
+    form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
 
-    # if not form.validate():
-    #     form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
-    #     form.site_id.data=site_id
-    #     return render_template("samples/new.html", form = form)
+    if not form.validate_on_submit():
+        # form.site_id.data=site_id
+
+        return render_template("samples/new.html", form = form)
 
     user = User.query.filter_by(username=current_user.username).first()
     s = Sample(form.samplename.data, form.sampletype.data, form.species.data, form.amount.data)
@@ -90,13 +91,12 @@ def samples_update(sample_id):
 def samples_save(sample_id):
 
     form = EditSampleForm(request.form)
+    form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
 
     s = Sample.query.filter_by(id=sample_id).first()
     
-    # if not form.validate():
-        # form = EditSampleForm(obj=s)
-        # form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
-        # return render_template("samples/edit.html", sample=s, form=form)
+    if not form.validate_on_submit():
+        return render_template("samples/edit.html", sample=s, form=form)
 
     siteid = form.site_id.data
     site = Site.query.get(siteid)

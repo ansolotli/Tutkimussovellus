@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, validators
 
 class AddSampleForm(FlaskForm):
-    site_id = SelectField("Site")
+    site_id = SelectField("Site", coerce=int)
     
     samplename = StringField("Sample name", [validators.Length(min=2, max=20)])
     sampletype = StringField("Sample type", [validators.Length(min=2, max=20)])
@@ -22,7 +22,7 @@ class ShowSampleForm(FlaskForm):
         csrf = False
 
 class EditSampleForm(FlaskForm):
-    site_id = SelectField("Site")
+    site_id = SelectField("Site", coerce=int)
 
     samplename = StringField("Sample name", [validators.Length(min=2, max=20)])
     sampletype = StringField("Sample type", [validators.Length(min=2, max=20)])
