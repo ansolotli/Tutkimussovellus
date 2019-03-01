@@ -49,22 +49,28 @@ class User(Base):
 
     @staticmethod
     def count_users_sites(userid):
-        stmt = text("SELECT COUNT(users_sites.site_id) FROM users_sites WHERE user_id = :userid").params(userid=userid)
+        stmt = text("SELECT COUNT(users_sites.site_id)"
+                    " FROM users_sites"
+                    " WHERE user_id = :userid").params(userid=userid)
 
         result = db.engine.execute(stmt)
         return result.fetchone()[0]
 
     @staticmethod
     def count_users_samples(userid):
-        stmt = text("SELECT COUNT(users_samples.sample_id) FROM users_samples WHERE user_id = :userid").params(userid=userid)
+        stmt = text("SELECT COUNT(users_samples.sample_id)"
+                    " FROM users_samples"
+                    " WHERE user_id = :userid").params(userid=userid)
 
         result = db.engine.execute(stmt)
         return result.fetchone()[0]
     
     @staticmethod
     def list_users_sites(userid):
-        stmt = text("SELECT site.name AS name FROM site LEFT JOIN users_sites ON site.id = users_sites.site_id "
-                    "WHERE users_sites.user_id = :userid").params(userid=userid)
+        stmt = text("SELECT site.name AS name"
+                    " FROM site"
+                    " LEFT JOIN users_sites ON site.id = users_sites.site_id"
+                    " WHERE users_sites.user_id = :userid").params(userid=userid)
 
         res = db.engine.execute(stmt)
 
@@ -72,4 +78,21 @@ class User(Base):
         for row in res:
             response.append({"name":row[0]})
         
+        return response
+    
+    @staticmethod
+    def list_users_samples(userid):
+        stmt = text("SELECT site.id as siteid, site.name as sitename, sample.samplename as samplename, sample.id as sampleid"
+        " FROM users_samples"
+        " JOIN sample ON sample.id = users_samples.sample_id"
+        " JOIN site ON site.id = sample.site_id"
+        " WHERE users_samples.user_id = :userid"
+        " ORDER BY site.name").params(userid=userid)
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"siteid":row[0], "sitename":row[1], "samplename":row[2], "sampleid":row[3]})
+
         return response

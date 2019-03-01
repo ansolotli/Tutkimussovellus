@@ -6,6 +6,7 @@ from application import app, db, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, NewUserForm
 
+
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
@@ -14,12 +15,14 @@ def auth_login():
     form = LoginForm(request.form)
 
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+
     if not user:
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
 
     login_user(user)
     return redirect(url_for("index"))
+
 
 @app.route("/auth/logout")
 def auth_logout():
@@ -51,22 +54,11 @@ def auth_create():
 @login_required()
 def auth_account():
 
-    user = User.query.filter_by(username=current_user.username).first()
-
-    stmt = text(
-        "SELECT site.id as siteid, site.name as sitename, sample.samplename as samplename, sample.id as sampleid "
-        "FROM users_samples JOIN sample ON sample.id = users_samples.sample_id "
-        "JOIN site ON site.id = sample.site_id "
-        "WHERE users_samples.user_id = :user_id "
-        "ORDER BY site.name"
-        ).params(user_id=current_user.id)
-
-    siteslist = db.engine.execute(stmt)
-
     users_sites = current_user.count_users_sites(current_user.id)
     users_samples = current_user.count_users_samples(current_user.id)
 
     list_users_sites = current_user.list_users_sites(current_user.id)
+    list_users_samples = current_user.list_users_samples(current_user.id)
 
-    return render_template("auth/ownaccount.html", user=current_user, sites=siteslist, 
+    return render_template("auth/ownaccount.html", user=current_user, list_users_samples=list_users_samples, 
         users_sites=users_sites, users_samples=users_samples, list_users_sites = list_users_sites)

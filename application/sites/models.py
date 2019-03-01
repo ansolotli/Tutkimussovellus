@@ -16,8 +16,11 @@ class Site(Base):
 
     @staticmethod
     def samples_per_site():
-        stmt = text("SELECT site.name AS name, COUNT(sample.id) AS count FROM sample "
-                    "LEFT JOIN site ON site.id = sample.site_id GROUP BY name")
+        stmt = text("SELECT site.name AS name, COUNT(sample.id) AS count"
+                    " FROM sample"
+                    " LEFT JOIN site ON site.id = sample.site_id"
+                    " GROUP BY name"
+                    " ORDER BY count DESC")
         
         res = db.engine.execute(stmt)
 
@@ -29,8 +32,11 @@ class Site(Base):
     
     @staticmethod
     def samples_per_site_and_type():
-        stmt = text("SELECT site.name AS name, sample.sampletype AS type, COUNT(sample.id) AS count FROM "
-                    "sample LEFT JOIN site ON site.id = sample.site_id GROUP BY name, type")
+        stmt = text("SELECT site.name AS name, sample.sampletype AS type, COUNT(sample.id) AS count"
+                    " FROM sample"
+                    " LEFT JOIN site ON site.id = sample.site_id"
+                    " GROUP BY name, type"
+                    " ORDER BY count DESC")
         
         res = db.engine.execute(stmt)
 
@@ -42,8 +48,11 @@ class Site(Base):
 
     @staticmethod
     def group_by_species_and_site():
-        stmt = text("SELECT site.name AS name, sample.species AS species, COUNT(sample.id) AS count FROM "
-                    "sample LEFT JOIN site ON site.id = sample.site_id GROUP BY name, species")
+        stmt = text("SELECT site.name AS name, sample.species AS species, COUNT(sample.id) AS count"
+                    " FROM sample"
+                    " LEFT JOIN site ON site.id = sample.site_id"
+                    " GROUP BY name, species"
+                    " ORDER BY count DESC")
         
         res = db.engine.execute(stmt)
 

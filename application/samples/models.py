@@ -23,8 +23,10 @@ class Sample(Base):
 
     @staticmethod
     def group_by_species():
-        stmt = text("SELECT sample.species AS species, COUNT(sample.id) AS count FROM "
-                    "sample GROUP BY species")
+        stmt = text("SELECT sample.species AS species, COUNT(sample.id) AS count"
+                    " FROM sample"
+                    " GROUP BY species"
+                    " ORDER BY count DESC")
         
         res = db.engine.execute(stmt)
 
@@ -36,8 +38,10 @@ class Sample(Base):
     
     @staticmethod
     def group_by_type():
-        stmt = text("SELECT sample.sampletype AS type, COUNT(sample.id) AS count FROM "
-                    "sample GROUP BY type")
+        stmt = text("SELECT sample.sampletype AS type, COUNT(sample.id) AS count"
+                    " FROM sample"
+                    " GROUP BY type"
+                    " ORDER BY count DESC")
         
         res = db.engine.execute(stmt)
 

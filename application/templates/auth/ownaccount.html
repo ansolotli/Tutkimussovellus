@@ -36,17 +36,16 @@
             </thead>
         </table>
     </div>
-
     <div class="col-5">
         <table class="table">
             <tbody>
-                {% for site in sites %}
+                {% for sample in list_users_samples %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('sites_show_one_site', site_id=site.siteid) }}">{{ site.sitename }}</a> 
+                        <a href="{{ url_for('sites_show_one_site', site_id=sample.siteid) }}">{{ sample.sitename }}</a> 
                     </td>
                     <td>
-                        <a href="{{ url_for('samples_show_one_sample', sample_id=site.sampleid) }}">{{ site.samplename}}</a>
+                        <a href="{{ url_for('samples_show_one_sample', sample_id=sample.sampleid) }}">{{ sample.samplename}}</a>
                     </td>
                 </tr>
                 {% endfor %}
