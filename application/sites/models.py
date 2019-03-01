@@ -20,7 +20,7 @@ class Site(Base):
                     " FROM sample"
                     " LEFT JOIN site ON site.id = sample.site_id"
                     " GROUP BY name"
-                    " ORDER BY count DESC")
+                    " ORDER BY count DESC, name")
         
         res = db.engine.execute(stmt)
 
@@ -36,7 +36,7 @@ class Site(Base):
                     " FROM sample"
                     " LEFT JOIN site ON site.id = sample.site_id"
                     " GROUP BY name, type"
-                    " ORDER BY count DESC")
+                    " ORDER BY count DESC, name, type")
         
         res = db.engine.execute(stmt)
 
@@ -52,7 +52,7 @@ class Site(Base):
                     " FROM sample"
                     " LEFT JOIN site ON site.id = sample.site_id"
                     " GROUP BY name, species"
-                    " ORDER BY count DESC")
+                    " ORDER BY count DESC, name, species")
         
         res = db.engine.execute(stmt)
 

@@ -96,3 +96,21 @@ class User(Base):
             response.append({"siteid":row[0], "sitename":row[1], "samplename":row[2], "sampleid":row[3]})
 
         return response
+
+    @staticmethod
+    def count_users_per_site():
+        stmt = text("SELECT site.name AS site, COUNT(DISTINCT account.id) AS count"
+                    " FROM account"
+                    " LEFT JOIN users_samples ON users_samples.user_id = account.id"
+                    " LEFT JOIN sample ON sample.id = users_samples.sample_id"
+                    " LEFT JOIN site ON site.id = sample.site_id"
+                    " GROUP BY site.id"
+                    " ORDER BY count DESC, site")
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"site":row[0], "count":row[1]})
+
+        return response

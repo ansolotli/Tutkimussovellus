@@ -115,6 +115,8 @@ def sites_search_results():
 @app.route("/sites/statistics", methods=["GET"])
 def see_statistics():
 
+    users_per_site = User.count_users_per_site()
+
     samples_per_site_and_type = Site.samples_per_site_and_type()
     samples_per_site = Site.samples_per_site()
     group_by_species_and_site = Site.group_by_species_and_site()
@@ -122,5 +124,5 @@ def see_statistics():
     group_by_species = Sample.group_by_species()
     group_by_type = Sample.group_by_type()
 
-    return render_template("sites/stats.html", samples_per_site_and_type = samples_per_site_and_type, samples_per_site = samples_per_site,
+    return render_template("sites/stats.html", users_per_site = users_per_site, samples_per_site_and_type = samples_per_site_and_type, samples_per_site = samples_per_site,
     group_by_species = group_by_species, group_by_species_and_site = group_by_species_and_site, group_by_type = group_by_type)

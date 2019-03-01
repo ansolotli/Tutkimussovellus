@@ -7,6 +7,35 @@
     <div class="col-6 text-center">
         <table class="table">
             <thead>
+                <th>How many users have samples on each site?</th>
+            </thead>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <th>Site</th>
+                <th>Users</th>
+            </thead>
+            <tbody>
+                {% for u in users_per_site %}
+                <tr>
+                    <td>
+                        {{ u.site }}
+                    </td>
+                    <td>
+                        {{ u.count }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+
+    <div class="col-6 text-center">
+        <table class="table">
+            <thead>
                 <th>How many samples are there on each site?</th>
             </thead>
         </table>
