@@ -103,13 +103,13 @@ def sites_search_results():
     form = SearchSiteForm(request.form)
 
     if not form.validate():
-        return render_template("sites/search.html", form=form)
+        return render_template("sites/search.html", form=form, searched=False)
 
     name = form.name.data
 
     results = Site.query.filter(Site.name.ilike("%" + name + "%")).order_by(Site.name).all()
 
-    return render_template("sites/search.html", sites = results, form = form)
+    return render_template("sites/search.html", sites = results, form = form, searched=True)
 
 
 @app.route("/sites/statistics", methods=["GET"])

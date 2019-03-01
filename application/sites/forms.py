@@ -14,7 +14,7 @@ class RenameSiteForm(FlaskForm):
        csrf = False 
 
 class SearchSiteForm(FlaskForm):
-    name = StringField("name", [validators.Length(max=20)])
+    name = StringField("name", [validators.Length(min=3, max=20)])
 
     class Meta:
         csrf = False
