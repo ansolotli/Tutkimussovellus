@@ -16,7 +16,7 @@ Sovellukseen lisättyjä tutkimuspaikkoja voi tarkastella linkkaamalla yläpalki
 
 ### Tutkimuspaikkojen hakeminen
 
-Voit etsiä tutkimuspaikkoja paikannimillä tai nimien osilla. Paina tutkimuspaikkojen listan alapuolella olevaa linkkiä "Search from sites" tai navigoi sivulle sovelluksen yläpalkista, kirjoita avautuvaan hakukenttään haluamasi paikannimi tai sen osa, ja paina "Search"-nappulaa. 
+Voit etsiä tutkimuspaikkoja sovelluksen yläpalkista löytyvästä "Search from sites" -linkistä. Krjoita avautuvaan hakukenttään haluamasi paikannimi tai sen osa, ja paina "Search"-nappulaa. 
 
 Esimerkiksi kaikki Saimaalla sijaitsevat tutkimuspaikat löytyvät haulla "Saimaa", kun taas haku "järvi" löytää esimerkiksi Inarijärven, Kemijärven ja Kilpisjärven. Olettaen tietysti, että nämä järvet ovat sovellukseen tallennettuja tutkimuspaikkoja.
 
@@ -38,7 +38,7 @@ Kaikki tietylle tutkimuspaikalle lisätyt näytteet näet kyseisen tutkimuspaika
 
 ### Näytteen muokkaus ja poistaminen
 
-Näytteitä voi muokata menemällä tietyn näytteen omalle sivulle ja painamalle nappulaa "Edit this sample." Muista täyttää avautuvan lomakkeen kaikki kohdat tai ne tallentuvat (toistaiseksi) tietokantaan tyhjinä. Kun olet korjannut näytteen tiedot, paina "Update this sample." 
+Näytteitä voi muokata menemällä tietyn näytteen omalle sivulle ja painamalle nappulaa "Edit this sample." Kun olet korjannut näytteen tiedot, paina "Update this sample." 
 
 Näytteen saa poistettua näytteen omalta sivulta painamalla punareunaista "Delete this sample" -nappulaa.
 
@@ -48,4 +48,8 @@ Voit lisätä tutkimuspaikalle näytteen kyseisen tutkimuspaikan omalla sivulla.
 
 ### Omien tutkimustietojen tarkastelu
 
-Pääset tarkastelemaan omia tietojasi sovelluksen yläpalkin "My research" -linkistä. Sivulla näet, montako tutkimuspaikkaa ja näytettä olet lisännyt sovellukseen, sekä lisäämäsi näytteet.
+Pääset tarkastelemaan omia tietojasi sovelluksen yläpalkin "My research" -linkistä. Sivulla näet, montako tutkimuspaikkaa ja näytettä olet lisännyt sovellukseen, sekä listat lisäämistäsi tutkimuskohteista.
+
+### Tilastotietojen tarkastelu
+
+Koontidataa sovellukseen tallennetuista tiedoista pääset tarkastelemaan yläpalkin linkistä "Statistics." Sivulla näet taulukoituina mm. sen, montako näytettä kullekin tutkimuspaikalle on lisätty, montako näytettä kutakin näytetyyppiä sovellukseen on lisätty, sekä monessako näytteessä kukin sovellukseen lisätty laji esiintyy.
