@@ -16,6 +16,7 @@ CREATE TABLE site (
         PRIMARY KEY (id)
 )
 ```
+Site-taulun name-sarakkeeseen lisätty indeksi, koska sovelluksessa on mahdollisuus hakea tutkimuspaikkoja nimen perusteella.
 
 ```
 CREATE TABLE account (
