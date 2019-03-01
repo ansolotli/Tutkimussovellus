@@ -15,6 +15,7 @@ def samples_index():
 
 
 @app.route("/samples/new/<site_id>", methods=["GET"])
+@login_required()
 def samples_form(site_id):
 
     form = AddSampleForm()

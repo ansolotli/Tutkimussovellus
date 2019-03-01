@@ -111,6 +111,7 @@ class User(Base):
 
         response = []
         for row in res:
-            response.append({"site":row[0], "count":row[1]})
+            if row[0] != None:
+                response.append({"site":row[0], "count":row[1]})
 
         return response
