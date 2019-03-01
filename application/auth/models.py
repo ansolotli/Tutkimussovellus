@@ -67,7 +67,7 @@ class User(Base):
     
     @staticmethod
     def list_users_sites(userid):
-        stmt = text("SELECT site.name AS name"
+        stmt = text("SELECT site.id AS siteid, site.name AS sitename"
                     " FROM site"
                     " LEFT JOIN users_sites ON site.id = users_sites.site_id"
                     " WHERE users_sites.user_id = :userid").params(userid=userid)
@@ -76,7 +76,7 @@ class User(Base):
 
         response = []
         for row in res:
-            response.append({"name":row[0]})
+            response.append({"siteid":row[0], "sitename":row[1]})
         
         return response
     
