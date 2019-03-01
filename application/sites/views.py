@@ -64,13 +64,6 @@ def sites_remove(site_id):
 
     s = Site.query.filter_by(id=site_id).first()
 
-    # user = User.query.filter_by(username=current_user.username).first()
-    # s.user_id = user.mysites.query.filter_by(site_id=site_id)
-
-    # if s.user_id != current_user.id:
-    #     # tee jotain, esim. 
-    #     return login_manager.unauthorized()
-
     db.session().delete(s)
     db.session().commit()
 
@@ -112,6 +105,8 @@ def sites_search_results():
     return render_template("sites/search.html", sites = results, form = form, searched=True)
 
 
+# This method calls static methods from sample, site and user models, each of which return lists based on 
+# aggregate queries.
 @app.route("/sites/statistics", methods=["GET"])
 def see_statistics():
 

@@ -49,7 +49,10 @@ def auth_create():
 
     return redirect(url_for("index"))
 
-
+# A page where the current user can see information about their own research data. The method calls 
+# static methods from auth.models
+# which return counts of user's own sites and samples as well as lists of the sites and samples that the user has
+# added into the app
 @app.route("/auth/own", methods=["GET"])
 @login_required()
 def auth_account():

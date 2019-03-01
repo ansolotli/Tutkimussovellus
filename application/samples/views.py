@@ -9,11 +9,8 @@ from application.sites.models import Site
 from application.auth.models import User
 
 
-@app.route("/samples", methods=["GET"])
-def samples_index():
-    return render_template("samples/list.html", samples = Sample.query.all())
-
-
+# Method returns template for creating a new sample on a specific sampling site, 
+# with the site_id pre-selected in the SelectField dropdown menu
 @app.route("/samples/new/<site_id>", methods=["GET"])
 @login_required()
 def samples_form(site_id):
@@ -43,8 +40,6 @@ def samples_create():
     form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
 
     if not form.validate_on_submit():
-        # form.site_id.data=site_id
-
         return render_template("samples/new.html", form = form)
 
     user = User.query.filter_by(username=current_user.username).first()
@@ -79,10 +74,8 @@ def samples_update(sample_id):
 
     sample = Sample.query.get(sample_id)
 
-
     form = EditSampleForm(obj=sample)
     form.site_id.choices = [(g.id, g.name) for g in Site.query.order_by(Site.name).all()]
-
 
     return render_template("samples/edit.html", sample = sample, form=form)
 
