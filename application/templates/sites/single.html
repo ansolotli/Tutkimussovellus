@@ -6,6 +6,7 @@
   <p>
     {{site.name}}
   </p>
+  {% if current_user.is_authenticated %}
   <div class="form-row align-items-center">
     <div class="col-4 mb-3">
       {{ form.name(value=site.name, class="form-control") }}
@@ -15,7 +16,11 @@
     </div>
   </div>
 </form>
-
+{% else %}
+<a href="{{ url_for('auth_login') }}">Log in to rename, delete or add samples to this site</a>
+<br>
+{% endif %}
+{% if current_user.is_authenticated %}
 <form method="POST" action="{{ url_for('sites_remove', site_id=site.id) }}">
   <div class="form-row align-items-center">
     <div class="col-auto mb-8">
@@ -26,7 +31,7 @@
     </div>
   </div>
 </form>
-
+{% endif %}
 <table>
   <br>
   <tr>
@@ -39,6 +44,7 @@
   {% endfor %}
 </table>
 <br>
+{% if current_user.is_authenticated %}
 <a href="{{ url_for('samples_form', site_id=site.id) }}">Add a new sample to this site</a>
-
+{% endif %}
 {% endblock %}

@@ -45,8 +45,13 @@
     {% endif %}
   </ul>
 </nav>
-
+{% if current_user.is_authenticated %}
 <p>
   <a href="{{ url_for('sites_form') }}">Add a new sampling site</a>
 </p>
+{% else %}
+<p>
+  <a href="{{ url_for('auth_login') }}">Log in to add a new sampling site</a>
+</p>
+{% endif %}
 {% endblock %}
