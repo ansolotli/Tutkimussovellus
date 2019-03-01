@@ -8,15 +8,13 @@ Kyseessä on sovellus, johon kerätään vesistöjen tilaan liittyviä tutkimust
 - tutkimuspaikkojen haku paikannimien perusteella
 - näytteen tarkastelu, lisääminen, poistaminen ja muokkaaminen
 - omien tutkimustietojen tarkastelu
+- sovellukseen tallennettujen tietojen tarkastelu
 
 ### Dokumentaatiolinkit
 
 - [asennusohje](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/asennusohje.md)
-
 - [käyttöohje toteutuneille toiminnallisuuksille](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/kayttoohje.md)
-
 - [Tietokantakaavio ja CREATE TABLE -lauseet](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/tietokanta.md)
-
 - [Käyttötapaukset (user stories) ja niihin liittyvät SQL-kyselyt](https://github.com/ansolotli/Tutkimussovellus/blob/master/documentation/userstories.md)
 
 ### Sovellus Herokussa
